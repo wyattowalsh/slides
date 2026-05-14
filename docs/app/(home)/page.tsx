@@ -47,7 +47,7 @@ export default function HomePage() {
 						</Link>
 					</Button>
 					<Button asChild size="lg" variant="outline">
-						<Link className="w-full sm:w-auto" href="http://localhost:5173">
+						<Link className="w-full sm:w-auto" href="http://127.0.0.1:5173">
 							Open local deck
 						</Link>
 					</Button>
@@ -64,7 +64,7 @@ export default function HomePage() {
 								{link.copy}
 							</p>
 							<Link className="font-medium text-fd-primary" href={link.href}>
-								Open page
+								Open {link.title}
 							</Link>
 						</CardContent>
 					</Card>

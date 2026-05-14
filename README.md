@@ -30,23 +30,23 @@ pnpm install
 
 ## Commands
 
-| Command                        | Purpose                                           |
-| ------------------------------ | ------------------------------------------------- |
-| `pnpm dev`                     | Run the slide deck locally                        |
-| `pnpm build`                   | Build the slide deck                              |
-| `pnpm preview`                 | Preview the built deck                            |
-| `pnpm docs:dev`                | Run the Fumadocs docs site                        |
-| `pnpm docs:build`              | Build the docs site                               |
-| `pnpm typecheck`               | Type-check root, UI package, and docs             |
-| `pnpm lint`                    | Run ESLint                                        |
-| `pnpm test:ui`                 | Run shared UI primitive unit tests                |
-| `pnpm validate`                | Run the aggregate pre-ship validation gate        |
-| `pnpm validate:bundle`         | Ensure opt-in presets stay out of the app bundle  |
-| `pnpm validate:plugin-presets` | Compile opt-in plugin preset imports and CSS      |
-| `pnpm validate:slides`         | Build and validate the rendered Reveal deck       |
-| `pnpm test:e2e`                | Run Playwright smoke tests                        |
-| `pnpm test:e2e:preview`        | Run Playwright smoke tests against preview output |
-| `pnpm export:pdf`              | Export `slides.pdf` from a running preview server |
+| Command                        | Purpose                                            |
+| ------------------------------ | -------------------------------------------------- |
+| `pnpm dev`                     | Run the slide deck locally                         |
+| `pnpm build`                   | Build the slide deck                               |
+| `pnpm preview`                 | Preview the built deck                             |
+| `pnpm docs:dev`                | Run the Fumadocs docs site                         |
+| `pnpm docs:build`              | Build the docs site                                |
+| `pnpm typecheck`               | Type-check root, UI package, and docs              |
+| `pnpm lint`                    | Run ESLint                                         |
+| `pnpm test:ui`                 | Run shared UI primitive unit tests                 |
+| `pnpm validate`                | Run the aggregate pre-ship validation gate         |
+| `pnpm validate:bundle`         | Check opt-in preset markers are absent from bundle |
+| `pnpm validate:plugin-presets` | Compile opt-in plugin preset imports and CSS       |
+| `pnpm validate:slides`         | Build and validate the rendered Reveal deck        |
+| `pnpm test:e2e`                | Run Playwright smoke tests                         |
+| `pnpm test:e2e:preview`        | Run Playwright smoke tests against preview output  |
+| `pnpm export:pdf`              | Export `slides.pdf` from a running preview server  |
 
 ## Authoring Slides
 
@@ -68,7 +68,7 @@ Reviewed opt-ins live in `src/lib/reveal-plugin-metadata.ts`. Presets that impor
 
 Run `pnpm validate:plugin-presets` after adding or changing preset modules. It compiles optional preset imports and CSS through Vite and checks preset config exports such as Mermaid's `startOnLoad: false` contract, but it does not prove runtime Reveal initialization.
 
-Run `pnpm validate:bundle` after building the deck to ensure opt-in preset markers from `src/lib/reveal-plugin-bundle-guards.json` are absent from the default production bundle. `pnpm validate:slides` runs the bundle check after rendered deck validation.
+Run `pnpm validate:bundle` after building the deck to check configured opt-in preset markers from `src/lib/reveal-plugin-bundle-guards.json` are absent from default JS/CSS assets. `pnpm validate:slides` runs the bundle check after rendered deck validation.
 
 Additional researched plugins stay metadata-only until a deck needs them. Useful lab candidates include drawing, pointer, attribution, narrated slideshow, and specialized fragment-flow helpers; remote control, analytics, webcam, voice, live-code, terminal execution, and external-content loaders remain blocked pending security and privacy review.
 
@@ -112,6 +112,6 @@ pnpm export:pdf
 
 ## Dependency Policy
 
-Runtime and tooling dependencies are pinned exactly in `package.json`; use the lockfile plus reviewed dependency updates instead of caret ranges. Keep optional Reveal plugins out of the default bundle unless their status changes in metadata, docs, README, and the bundle guard together.
+External npm dependencies are pinned exactly in `package.json`; internal workspace dependencies use `workspace:*`. Use the lockfile plus reviewed dependency updates instead of caret ranges. Keep optional Reveal plugins out of the default bundle unless their status changes in metadata, docs, README, and the bundle guard together.
 
 Run `pnpm audit --audit-level moderate` during release checks and after dependency updates. Treat `docs/content` as public-by-default because the Fumadocs search route indexes committed docs content.

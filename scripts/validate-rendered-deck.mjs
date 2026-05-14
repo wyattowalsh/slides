@@ -1,5 +1,5 @@
 import { chromium } from "@playwright/test";
-import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { get } from "node:http";
 import { createServer } from "node:net";
 import { join } from "node:path";
@@ -84,7 +84,11 @@ const stopPreview = async () => {
 	await new Promise((resolve) => {
 		preview.once("exit", resolve);
 		preview.kill("SIGTERM");
-		setTimeout(resolve, 2_000).unref();
+		setTimeout(() => {
+			if (preview.exitCode === null && preview.signalCode === null) {
+				preview.kill("SIGKILL");
+			}
+		}, 2_000).unref();
 	});
 };
 
@@ -137,9 +141,7 @@ try {
 		throw new Error("Rendered deck did not expose text for the active slide.");
 	}
 
-	if (!existsSync(outputDirectory)) {
-		mkdirSync(outputDirectory, { recursive: true });
-	}
+	mkdirSync(outputDirectory, { recursive: true });
 
 	writeFileSync(
 		renderedDeckPath,
@@ -153,8 +155,12 @@ try {
 	);
 
 	if (validation.status !== 0) {
+		const spawnError = validation.error?.message
+			? `\n${validation.error.message}`
+			: "";
+
 		throw new Error(
-			`Rendered Reveal validation failed:\n${validation.stdout}${validation.stderr}`,
+			`Rendered Reveal validation failed:${spawnError}\n${validation.stdout}${validation.stderr}`,
 		);
 	}
 

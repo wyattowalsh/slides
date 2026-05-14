@@ -1,6 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import type { ComponentProps, Ref } from "react";
+import type { ComponentProps, MouseEvent, Ref } from "react";
 import { cn } from "@workspace/ui/lib/utils";
 
 export const buttonVariants = cva(
@@ -41,18 +41,39 @@ export interface ButtonProps
 export function Button({
 	asChild = false,
 	className,
+	disabled,
+	onClick,
 	ref,
 	size,
+	tabIndex,
 	type,
 	variant,
 	...props
 }: ButtonProps) {
 	const Comp = asChild ? Slot : "button";
-	const componentProps = asChild ? props : { ...props, type: type ?? "button" };
+	const componentProps = asChild
+		? {
+				...props,
+				...(disabled
+					? {
+							"aria-disabled": true,
+							"data-disabled": "true",
+							onClick: (event: MouseEvent<HTMLElement>) => {
+								event.preventDefault();
+								event.stopPropagation();
+							},
+							tabIndex: -1,
+						}
+					: { onClick, tabIndex }),
+			}
+		: { ...props, disabled, onClick, tabIndex, type: type ?? "button" };
 
 	return (
 		<Comp
-			className={cn(buttonVariants({ className, size, variant }))}
+			className={cn(
+				buttonVariants({ className, size, variant }),
+				"data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
+			)}
 			ref={ref}
 			{...componentProps}
 		/>

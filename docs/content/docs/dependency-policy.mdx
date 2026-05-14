@@ -5,7 +5,7 @@ description: Supply-chain and public-content rules for this workspace.
 
 ## Versioning
 
-Runtime and tooling dependencies are pinned exactly in `package.json`. Keep the `pnpm-lock.yaml` lockfile committed and use reviewed updates instead of caret ranges.
+External npm dependencies are pinned exactly in `package.json`. Internal workspace dependencies use the `workspace:*` protocol, and the committed `pnpm-lock.yaml` records the resolved local links. Keep the lockfile committed and use reviewed updates instead of caret ranges.
 
 When changing dependencies, run:
 
@@ -24,7 +24,9 @@ For each optional plugin update, check package provenance before merging:
 - npm package name, version, and repository URL match the expected upstream.
 - Tarball size and publish timing are plausible for the package.
 - License and peer dependency range are still acceptable.
-- `pnpm validate:bundle` proves the opt-in plugin does not enter the default deck bundle.
+- `pnpm validate:bundle` checks configured opt-in plugin markers are absent from default JS/CSS assets.
+
+Update `src/lib/reveal-plugin-bundle-guards.json` whenever preset import names, package markers, or CSS markers change.
 
 ## Public Docs Content
 

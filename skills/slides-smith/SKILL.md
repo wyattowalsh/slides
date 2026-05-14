@@ -1,7 +1,7 @@
 ---
 name: slides-smith
 description: >-
-  Build, edit, design, validate, export, and migrate Reveal.js decks in this Vite + React + @revealjs/react repo. Use when creating presentations, changing plugins, exporting PDF/PPTX, or porting legacy decks. NOT for Slidev/Marp, generic PowerPoint design, skills, agents, or MCP servers.
+  Use when creating, editing, validating, exporting, or migrating Reveal.js decks in this Vite + React repo. NOT for Slidev/Marp, generic PowerPoint design, skills, agents, or MCP servers.
 argument-hint: "<workflow> [deck/topic/path]"
 license: MIT
 compatibility: "Repo-level skill for the slides workspace. Requires pnpm; optional export workflows may require pandoc, LibreOffice, or PptxGenJS."
@@ -109,11 +109,11 @@ Use the dispatch table and classifier first. Load `references/*.md` only when th
 
 ## Validation Contract
 
-Maintainer-only skill-definition checks are for edits to `skills/slides-smith/`, not normal deck workflows. Before declaring this project-local skill complete, run the local checks from the slides repo and the audit from the agents repo. Set `SLIDES_REPO` and `AGENTS_REPO` first:
+Maintainer-only skill-definition checks are for edits to `skills/slides-smith/`, not normal deck workflows. Before declaring this project-local skill complete, run the local checks from the slides repo and the audit from the agents repo. Set `SLIDES_REPO` to this repo root and `AGENTS_REPO` to the local agents repo first:
 
 ```bash
-SLIDES_REPO=/Users/ww/dev/projects/slides
-AGENTS_REPO=/Users/ww/dev/projects/agents
+SLIDES_REPO=/path/to/slides
+AGENTS_REPO=/path/to/agents
 
 cd "$SLIDES_REPO"
 uv run wagents validate
@@ -131,7 +131,7 @@ Before declaring slide-deck work complete, run the relevant repo validation from
 
 1. Never add `apps/` or move the root slides app without explicit user approval.
 2. Never register the Reveal Markdown plugin by default; use React `Markdown` for markdown slides.
-3. Never mutate `src/lib/reveal-plugins.ts` without also syncing plugin metadata, README, and docs.
+3. Never mutate `src/lib/reveal-plugins.ts` without also syncing plugin metadata, bundle guards, README, and docs.
 4. Never add a community plugin to defaults when an opt-in preset satisfies the deck need.
 5. Always run `pnpm validate:plugin-presets` after changing preset modules or optional plugin dependencies.
 6. Always run `pnpm validate:slides` after build, Reveal config, plugin, or slide-structure changes.

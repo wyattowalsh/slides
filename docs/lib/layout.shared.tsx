@@ -7,7 +7,7 @@ export const baseOptions = {
 	links: [
 		{
 			text: "Deck",
-			url: "http://localhost:5173",
+			url: "http://127.0.0.1:5173",
 		},
 	],
 } satisfies BaseLayoutProps;

@@ -56,7 +56,7 @@ When adding a plugin:
 2. Prefer built-in Reveal capability or existing opt-in preset.
 3. If new preset is needed, add a static module under `src/lib/reveal-plugin-presets/` and import package CSS there.
 4. Add the preset to `tests/plugin-presets-entry.ts` so `pnpm validate:plugin-presets` compiles it.
-5. Add bundle-guard markers to `scripts/validate-default-bundle.mjs` for any new opt-in package or CSS marker.
+5. Add bundle-guard markers to `src/lib/reveal-plugin-bundle-guards.json` for any new opt-in package or CSS marker. Edit `scripts/validate-default-bundle.mjs` only when validator behavior changes.
 6. Update metadata, README, and `docs/content/docs/reveal-plugins.mdx`.
 7. For default plugin changes, also update `src/lib/reveal-plugins.ts` and confirm the default remains intentionally small.
 8. Run `pnpm validate:plugin-presets`, then `pnpm validate:slides` or `pnpm build && pnpm validate:bundle`.
@@ -80,7 +80,7 @@ Update docs when changing:
 
 | Change          | Surfaces                                                               |
 | --------------- | ---------------------------------------------------------------------- |
-| Default plugins | `src/lib/reveal-plugins.ts`, metadata, README, docs                    |
+| Default plugins | `src/lib/reveal-plugins.ts`, metadata, bundle guard, README, docs      |
 | Opt-in presets  | preset module, preset entry test, bundle guard, metadata, README, docs |
 | Commands        | `package.json`, README, docs                                           |
 | Export workflow | README, docs export page, skill reference if applicable                |

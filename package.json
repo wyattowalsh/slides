@@ -8,7 +8,7 @@
 		"node": ">=24"
 	},
 	"scripts": {
-		"dev": "vite --host 127.0.0.1",
+		"dev": "vite --host 127.0.0.1 --strictPort",
 		"build": "vite build && node scripts/copy-katex-assets.mjs",
 		"preview": "vite preview --host 127.0.0.1 --strictPort",
 		"docs:dev": "pnpm --filter @slides/docs dev",

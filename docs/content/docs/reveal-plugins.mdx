@@ -54,7 +54,7 @@ const config = { ...revealConfig, ...mermaidPresetConfig };
 
 Run `pnpm validate:plugin-presets` after adding or changing preset modules. It compiles optional preset imports and CSS through Vite and checks config exports such as Mermaid's `startOnLoad: false` contract; it does not prove runtime Reveal initialization.
 
-Run `pnpm validate:bundle` after a deck build to confirm opt-in preset markers from `src/lib/reveal-plugin-bundle-guards.json` are absent from the default production bundle. `pnpm validate:slides` runs this check after rendered deck validation.
+Run `pnpm validate:bundle` after a deck build to check configured opt-in preset markers from `src/lib/reveal-plugin-bundle-guards.json` are absent from default JS/CSS assets. `pnpm validate:slides` runs this check after rendered deck validation.
 
 ## Lab Or Avoid
 

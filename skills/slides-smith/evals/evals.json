@@ -80,13 +80,13 @@
 			"expected_output": "Routes to Plugin workflow, review or implement Reveal plugin changes, prefers the existing opt-in Mermaid preset, updates plugin metadata README docs only if surfaces change, and plans pnpm validate:plugin-presets plus pnpm validate:slides or pnpm build before pnpm validate:bundle.",
 			"assertions": [
 				"Does not add Mermaid to default revealPlugins without explicit user approval.",
-				"Mentions tests/plugin-presets-entry.ts and scripts/validate-default-bundle.mjs if a new opt-in preset or marker is added."
+				"Mentions tests/plugin-presets-entry.ts and src/lib/reveal-plugin-bundle-guards.json if a new opt-in preset or marker is added."
 			]
 		},
 		{
 			"id": "default-plugin-policy-change",
 			"prompt": "/slides-smith plugin make Mermaid default",
-			"expected_output": "Routes to Plugin workflow, recognizes a default plugin policy change, asks for or verifies explicit approval, then syncs src/lib/reveal-plugins.ts, src/lib/reveal-plugin-metadata.ts, README, docs/content/docs/reveal-plugins.mdx, preset validation, slide validation, docs build, and E2E where runtime behavior can change.",
+			"expected_output": "Routes to Plugin workflow, recognizes a default plugin policy change, asks for or verifies explicit approval, then syncs src/lib/reveal-plugins.ts, src/lib/reveal-plugin-metadata.ts, src/lib/reveal-plugin-bundle-guards.json, README, docs/content/docs/reveal-plugins.mdx, preset validation, slide validation, docs build, and E2E where runtime behavior can change.",
 			"assertions": [
 				"Does not silently expand the default plugin array.",
 				"Keeps the default plugin set intentionally small unless approval is explicit."

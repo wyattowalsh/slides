@@ -5,6 +5,7 @@
 		"getting-started",
 		"authoring-slides",
 		"reveal-plugins",
+		"dependency-policy",
 		"export-and-validation"
 	]
 }

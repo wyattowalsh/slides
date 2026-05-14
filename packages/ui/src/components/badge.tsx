@@ -1,6 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps, Ref } from "react";
-import { cn } from "@workspace/ui/lib/utils";
 
 export const badgeVariants = cva(
 	"inline-flex w-fit shrink-0 items-center rounded-full border px-3 py-1 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
@@ -29,7 +28,7 @@ export interface BadgeProps
 export function Badge({ className, ref, variant, ...props }: BadgeProps) {
 	return (
 		<span
-			className={cn(badgeVariants({ className, variant }))}
+			className={badgeVariants({ className, variant })}
 			ref={ref}
 			{...props}
 		/>

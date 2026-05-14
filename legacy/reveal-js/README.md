@@ -21,4 +21,6 @@ Files under `legacy/` are archival inputs, not active app source. The active sli
 
 If a legacy deck should become an active deck, port it into `src/slides/` using `@revealjs/react` components and cover it with the normal validation flow.
 
-The archived `react/` wrapper is preserved for source reference. Its original local `file:` dependencies pointed at the old checkout root, so use the active workspace dependencies or port specific wrapper ideas into normal package dependencies before treating it as runnable.
+Nested `package.json`, lockfile, and workspace files under `legacy/` are preserved as historical context only. Do not run installs, audits, or CI from those folders as if they were current workspace packages; their dependency ranges and build-script policies reflect the old checkout, not this repo's pinned root workspace.
+
+The archived `react/` wrapper is preserved for source reference. Its original local `file:` dependencies pointed at the old checkout root, so use the active workspace dependencies or port specific wrapper ideas into normal package dependencies before treating it as runnable. If any legacy subtree must become runnable again, regenerate its lockfile from matching manifests, pin dependency ranges intentionally, and review any install-script allowances before adding it to CI.
