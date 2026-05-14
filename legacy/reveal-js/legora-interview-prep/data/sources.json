@@ -1,0 +1,72 @@
+{
+	"legora_newsroom": {
+		"label": "Legora newsroom",
+		"date": "accessed May 8, 2026",
+		"url": "https://legora.com/newsroom"
+	},
+	"legora_aos": {
+		"label": "Legora aOS launch",
+		"date": "May 7, 2026",
+		"url": "https://legora.com/newsroom/legora-introduces-the-legora-aos-the-agentic-operating-system-for-legal-work"
+	},
+	"legora_graceview": {
+		"label": "Graceview acquisition",
+		"date": "May 6, 2026",
+		"url": "https://legora.com/newsroom/legora-acquires-graceview-to-bring-real-time-regulatory-intelligence-to-legal-compliance-and-risk-teams"
+	},
+	"legora_everlaw": {
+		"label": "Everlaw partnership",
+		"date": "May 4, 2026",
+		"url": "https://legora.com/newsroom/everlaw-and-legora-partner-to-create-end-to-end-ai-litigation-workflows"
+	},
+	"legora_qura": {
+		"label": "Qura acquisition",
+		"date": "Apr 23, 2026",
+		"url": "https://legora.com/newsroom/legora-acquires-qura-to-build-the-world%E2%80%99s-leading-ai-native-legal-research-platform"
+	},
+	"legora_series_d_extension": {
+		"label": "Series D extension",
+		"date": "Apr 30, 2026",
+		"url": "https://legora.com/newsroom/legora-extends-series-d-with-additional-50-million-welcomes-atlassian-and-nventures-as-investors"
+	},
+	"legora_arr": {
+		"label": "ARR and customer growth",
+		"date": "Apr 2, 2026",
+		"url": "https://legora.com/newsroom/legal-teams-adoption-of-ai-propels-legora-past-100-million-in-annual-recurring-revenue"
+	},
+	"legora_security": {
+		"label": "Security and compliance",
+		"date": "accessed May 8, 2026",
+		"url": "https://legora.com/security"
+	},
+	"legora_jobs_sse_ny": {
+		"label": "Senior SWE, New York",
+		"date": "accessed May 8, 2026",
+		"url": "https://jobs.ashbyhq.com/legora/3fcdc6ba-e35f-470e-823e-7c4563c933a2"
+	},
+	"anthropic_effective_agents": {
+		"label": "Anthropic agent patterns",
+		"date": "Dec 2024",
+		"url": "https://www.anthropic.com/engineering/building-effective-agents"
+	},
+	"openai_eval_best_practices": {
+		"label": "OpenAI eval best practices",
+		"date": "accessed May 8, 2026",
+		"url": "https://developers.openai.com/api/docs/guides/evaluation-best-practices"
+	},
+	"openai_agent_guardrails": {
+		"label": "OpenAI Agents guardrails",
+		"date": "accessed May 8, 2026",
+		"url": "https://openai.github.io/openai-agents-python/guardrails/"
+	},
+	"openai_agent_tracing": {
+		"label": "OpenAI Agents tracing",
+		"date": "accessed May 8, 2026",
+		"url": "https://openai.github.io/openai-agents-python/tracing/"
+	},
+	"google_a2a": {
+		"label": "Google A2A announcement",
+		"date": "Apr 9, 2025",
+		"url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/"
+	}
+}

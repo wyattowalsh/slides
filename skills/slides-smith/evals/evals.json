@@ -1,0 +1,141 @@
+{
+	"skill_name": "slides-smith",
+	"evals": [
+		{
+			"id": "empty-workflow-menu",
+			"prompt": "/slides-smith",
+			"expected_output": "Routes explicit empty /slides-smith invocation to the Empty handler, shows the workflow menu, asks for a target, and does not start edits.",
+			"assertions": [
+				"Does not create files before a workflow and target are selected.",
+				"Mentions Create, Edit, Design, Plugin, Export, Validate, Docs, Migrate, and Release options."
+			]
+		},
+		{
+			"id": "explicit-create-deck",
+			"prompt": "/slides-smith create a 12-slide product launch deck",
+			"expected_output": "Routes explicit /slides-smith invocation to Create workflow, drafts a narrative arc, reads repo instructions before editing, uses @revealjs/react components, and plans relevant validation with pnpm typecheck, pnpm lint, pnpm validate:slides, and pnpm test:e2e when layout or navigation changes.",
+			"assertions": [
+				"Does not create an apps/ directory.",
+				"Does not manually initialize Reveal in React.",
+				"Does not register the Reveal Markdown plugin by default."
+			]
+		},
+		{
+			"id": "edit-design-existing-deck",
+			"prompt": "/slides-smith polish active deck",
+			"expected_output": "Routes to Design and Edit workflows, resolves the active deck through src/slides/active-deck.tsx and src/slides/active-deck-metadata.ts, improves visual system layout hierarchy motion, preserves the established repo visual language, and runs relevant validation after visual changes.",
+			"assertions": [
+				"Locates the target slide file before editing.",
+				"Uses Reveal props, data attributes, fragments, and React components instead of custom lifecycle wrappers."
+			]
+		},
+		{
+			"id": "natural-language-auto-detect",
+			"prompt": "Make a technical talk deck about agents with code examples and export options",
+			"expected_output": "Activates slides-smith from a natural-language deck request and auto-detect create/edit/design/export/validate by selecting Create for the new deck, Design for layout needs, Export for export options, and Validate for completion checks.",
+			"assertions": [
+				"States the selected workflow before editing.",
+				"Does not skip repo inspection before creating slides."
+			]
+		},
+		{
+			"id": "editable-pptx-pandoc",
+			"prompt": "Export this Reveal deck to PowerPoint and keep it easy to edit",
+			"expected_output": "Activates slides-smith from a natural-language trigger, classifies the request as Export, loads references/export-workflows.md, chooses and executes PowerPoint export strategy via Pandoc PPTX for editable text-first output, and warns that Pandoc PPTX will not preserve full React/CSS Reveal visual fidelity.",
+			"assertions": [
+				"Does not ask an unnecessary editability-versus-fidelity question because the prompt already asks for editability.",
+				"Does not present PDF export as a PPTX solution."
+			]
+		},
+		{
+			"id": "ambiguous-pptx-intent-gate",
+			"prompt": "/slides-smith export pptx best quality",
+			"expected_output": "Routes to Export workflow and asks one clarification question about editable content versus visual fidelity before choosing Pandoc PPTX, Screenshot PPTX, or Native PPTX.",
+			"assertions": [
+				"Does not assume automatic React Reveal to editable PPTX conversion.",
+				"Explains the export intent gate before selecting tooling."
+			]
+		},
+		{
+			"id": "pdf-export-preview-sequencing",
+			"prompt": "/slides-smith export pdf",
+			"expected_output": "Routes to Export workflow, uses Reveal PDF, builds the deck, starts pnpm preview as a long-running server, runs pnpm export:pdf while preview is still running, and does not treat PDF as PPTX.",
+			"assertions": [
+				"Mentions the preview server must remain running during Decktape export.",
+				"Keeps Reveal ?print-pdf as a manual fallback, not the default automated path."
+			]
+		},
+		{
+			"id": "legacy-ppt-export",
+			"prompt": "/slides-smith export ppt board-review",
+			"expected_output": "Routes to Export workflow, selects Legacy PPT only because .ppt was explicitly requested, generates the selected PPTX first, then uses LibreOffice conversion with soffice --headless --convert-to ppt, and warns about fidelity loss.",
+			"assertions": [
+				"Does not convert directly from React Reveal to legacy .ppt.",
+				"Uses the same selected deck slug for PPTX generation and PPT conversion."
+			]
+		},
+		{
+			"id": "plugin-policy-opt-in",
+			"prompt": "/slides-smith plugin add Mermaid diagrams to one deck",
+			"expected_output": "Routes to Plugin workflow, review or implement Reveal plugin changes, prefers the existing opt-in Mermaid preset, updates plugin metadata README docs only if surfaces change, and plans pnpm validate:plugin-presets plus pnpm validate:slides or pnpm build before pnpm validate:bundle.",
+			"assertions": [
+				"Does not add Mermaid to default revealPlugins without explicit user approval.",
+				"Mentions tests/plugin-presets-entry.ts and scripts/validate-default-bundle.mjs if a new opt-in preset or marker is added."
+			]
+		},
+		{
+			"id": "default-plugin-policy-change",
+			"prompt": "/slides-smith plugin make Mermaid default",
+			"expected_output": "Routes to Plugin workflow, recognizes a default plugin policy change, asks for or verifies explicit approval, then syncs src/lib/reveal-plugins.ts, src/lib/reveal-plugin-metadata.ts, README, docs/content/docs/reveal-plugins.mdx, preset validation, slide validation, docs build, and E2E where runtime behavior can change.",
+			"assertions": [
+				"Does not silently expand the default plugin array.",
+				"Keeps the default plugin set intentionally small unless approval is explicit."
+			]
+		},
+		{
+			"id": "docs-plugin-policy",
+			"prompt": "/slides-smith docs plugin policy",
+			"expected_output": "Routes to Docs workflow, syncs README and docs for slide workflow changes, checks plugin policy surfaces, and runs pnpm docs:build after documentation changes.",
+			"assertions": [
+				"Does not change runtime plugin code for docs-only updates.",
+				"Keeps docs source-grounded in the repo plugin metadata."
+			]
+		},
+		{
+			"id": "legacy-migrate-target-required",
+			"prompt": "/slides-smith polish the legacy deck and document the migration",
+			"expected_output": "Routes to Migrate, Design, and Docs workflows only after locating or asking for the legacy deck path; then port legacy reveal.js/html decks into repo-native React slides, improve visual system layout hierarchy motion where appropriate, and document migration boundaries.",
+			"assertions": [
+				"Keeps legacy archive content out of active build paths unless porting intentionally.",
+				"Does not edit an arbitrary legacy deck without a target path."
+			]
+		},
+		{
+			"id": "validate-workflow-dev-server-limits",
+			"prompt": "/slides-smith validate",
+			"expected_output": "Routes to Validate workflow, loads references/validation.md, runs repo validation and browser smoke checks, reports that pnpm test:e2e is a dev-server smoke test, and states which commands passed or could not run.",
+			"assertions": [
+				"Does not claim Playwright exercises production preview unless a preview-specific check was run.",
+				"Does not claim axe scans every slide state unless the test was extended to do so."
+			]
+		},
+		{
+			"id": "release-full-validation",
+			"prompt": "/slides-smith release",
+			"expected_output": "Routes to Release workflow, loads validation guidance, runs full ship-readiness validation, and reports pnpm typecheck, pnpm lint, pnpm validate:plugin-presets, pnpm build, pnpm docs:build, pnpm validate:slides, pnpm test:e2e, and pnpm audit --audit-level moderate or explains any command that could not run.",
+			"assertions": [
+				"Does not include empty-invocation menu behavior in the release workflow.",
+				"Reports residual risks for export artifacts or production preview if not inspected."
+			]
+		},
+		{
+			"id": "negative-control-slidev",
+			"prompt": "Create a Slidev theme package for my Vue slides",
+			"expected_output": "Negative control: should not trigger slides-smith, does not trigger this skill, routes to Slidev or general frontend handling if available, and does not apply Vite React Reveal repo rules.",
+			"assertions": [
+				"Recognizes this is not for this Vite React Reveal repo workflow.",
+				"Does not use slides-smith validation or plugin policy for Slidev/Marp work."
+			]
+		}
+	]
+}

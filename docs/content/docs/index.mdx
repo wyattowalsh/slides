@@ -1,0 +1,25 @@
+---
+title: Overview
+description: How this slides workspace is organized.
+---
+
+This repository is a lightweight pnpm workspace for authoring Reveal.js decks with React.
+
+## Topology
+
+| Path           | Role                                         |
+| -------------- | -------------------------------------------- |
+| `src/`         | Root Vite app and Reveal.js deck             |
+| `packages/ui/` | Shared shadcn-compatible Tailwind primitives |
+| `docs/`        | Fumadocs development documentation           |
+| `tests/e2e/`   | Playwright and axe smoke tests               |
+
+The root is intentionally the slides app. Do not introduce an `apps/` directory unless the team explicitly changes the repo topology.
+
+## Defaults
+
+- Reveal initialization is owned by `@revealjs/react`.
+- Tailwind configuration is CSS-first through v4 `@theme` tokens.
+- Shared UI is minimal and imported from `@workspace/ui`.
+- Docs use Fumadocs MDX with local search.
+- Dependencies are exact-pinned and optional Reveal plugins stay behind bundle guards.

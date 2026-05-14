@@ -1,0 +1,31 @@
+---
+title: Dependency Policy
+description: Supply-chain and public-content rules for this workspace.
+---
+
+## Versioning
+
+Runtime and tooling dependencies are pinned exactly in `package.json`. Keep the `pnpm-lock.yaml` lockfile committed and use reviewed updates instead of caret ranges.
+
+When changing dependencies, run:
+
+```bash
+pnpm install
+pnpm audit --audit-level moderate
+pnpm validate
+```
+
+## Reveal Plugins
+
+Default plugins must stay small. Optional plugins remain opt-in until a deck needs them and the metadata, preset module, docs, README, and bundle guard are updated together.
+
+For each optional plugin update, check package provenance before merging:
+
+- npm package name, version, and repository URL match the expected upstream.
+- Tarball size and publish timing are plausible for the package.
+- License and peer dependency range are still acceptable.
+- `pnpm validate:bundle` proves the opt-in plugin does not enter the default deck bundle.
+
+## Public Docs Content
+
+Treat `docs/content` as public-by-default. The Fumadocs search API indexes committed docs pages, so do not place private notes, credentials, interview-only material, or internal customer details under docs content.

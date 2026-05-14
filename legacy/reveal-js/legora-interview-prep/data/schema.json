@@ -1,0 +1,54 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://local/legora-interview-prep/deck.schema.json",
+	"title": "Legora interview prep reveal.js deck data",
+	"type": "object",
+	"required": ["schemaVersion", "meta", "slides"],
+	"additionalProperties": false,
+	"properties": {
+		"schemaVersion": { "const": 1 },
+		"meta": {
+			"type": "object",
+			"required": ["title", "subtitle", "updated"],
+			"additionalProperties": true
+		},
+		"slides": {
+			"type": "array",
+			"minItems": 1,
+			"items": { "$ref": "#/$defs/slide" }
+		}
+	},
+	"$defs": {
+		"slide": {
+			"type": "object",
+			"required": ["id", "menuTitle", "html", "notes"],
+			"additionalProperties": false,
+			"properties": {
+				"id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+				"menuTitle": { "type": "string", "minLength": 1 },
+				"classes": {
+					"type": "array",
+					"items": { "type": "string", "minLength": 1 }
+				},
+				"attributes": {
+					"type": "object",
+					"additionalProperties": { "type": "string" }
+				},
+				"sourceIds": {
+					"type": "array",
+					"items": { "type": "string", "minLength": 1 }
+				},
+				"html": {
+					"type": "array",
+					"minItems": 1,
+					"items": { "type": "string" }
+				},
+				"notes": {
+					"type": "array",
+					"minItems": 1,
+					"items": { "type": "string" }
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,150 @@
+---
+name: slides-smith
+description: >-
+  Build, edit, design, validate, export, and migrate Reveal.js decks in this Vite + React + @revealjs/react repo. Use when creating presentations, changing plugins, exporting PDF/PPTX, or porting legacy decks. NOT for Slidev/Marp, generic PowerPoint design, skills, agents, or MCP servers.
+argument-hint: "<workflow> [deck/topic/path]"
+license: MIT
+compatibility: "Repo-level skill for the slides workspace. Requires pnpm; optional export workflows may require pandoc, LibreOffice, or PptxGenJS."
+metadata:
+  author: slides-repo
+  version: "1.0.0"
+---
+
+# Slides Smith
+
+Repo-level operator for this Vite + React + Reveal.js slides workspace.
+
+## Dispatch
+
+| $ARGUMENTS                                        | Action                                                         | Example                                           |
+| ------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------- |
+| `create <topic>` / `new deck <topic>`             | Create a new repo-native presentation                          | `/slides-smith create investor demo deck`         |
+| `edit <path or request>` / `add slides <request>` | Modify an existing deck                                        | `/slides-smith add slides about pricing`          |
+| `design <path>` / `polish <path>`                 | Improve visual system, layout, hierarchy, motion               | `/slides-smith polish active deck`                |
+| `plugin <need>` / `plugins`                       | Review or implement Reveal plugin changes                      | `/slides-smith plugin mermaid diagrams`           |
+| `export pdf [path]`                               | Build and export PDF                                           | `/slides-smith export pdf`                        |
+| `export pptx <path>` / `export ppt <path>`        | Choose and execute PowerPoint export strategy                  | `/slides-smith export pptx keynote-outline`       |
+| `validate` / `qa`                                 | Run repo validation and browser smoke checks                   | `/slides-smith validate`                          |
+| `docs <change>`                                   | Sync README/docs for slide workflow changes                    | `/slides-smith docs plugin policy`                |
+| `migrate <path>` / `import legacy <path>`         | Port legacy reveal.js/HTML decks into repo-native React slides | `/slides-smith migrate legacy/reveal-js/foo.html` |
+| `release` / `ship-ready`                          | Run full ship-readiness validation                             | `/slides-smith release`                           |
+| Natural language deck request                     | Auto-detect create/edit/design/export/validate                 | `make a technical talk deck about agents`         |
+| Empty                                             | Show workflow menu and ask for target                          | `/slides-smith`                                   |
+
+## Workflow Classifier
+
+Score the request, then state the selected workflow before editing.
+
+| Dimension         | 0                     | 1                     | 2                                       |
+| ----------------- | --------------------- | --------------------- | --------------------------------------- |
+| Files touched     | one slide file        | slides + styles/tests | plugins/docs/config/export scripts      |
+| User-visible risk | copy-only             | layout/navigation     | build, plugin, export, or docs behavior |
+| Source clarity    | full content provided | partial outline       | vague goal or legacy input              |
+| Fidelity need     | normal web deck       | polished talk         | PDF/PPTX parity or brand-critical       |
+
+| Score | Tier          | Strategy                                                            |
+| ----- | ------------- | ------------------------------------------------------------------- |
+| 0-2   | Simple        | Edit directly, run focused validation                               |
+| 3-5   | Standard      | Inspect docs/code, make minimal changes, run relevant suite         |
+| 6-8   | Comprehensive | Plan briefly, split research/implementation/QA, run full validation |
+
+## Core Process
+
+### Inspect
+
+1. Read `AGENTS.md`, `README.md`, and the target slide/docs files before changing code.
+2. Preserve topology: root app, `docs/` site, `packages/ui/` primitives, no `apps/` directory.
+3. Resolve "active deck" through `src/slides/active-deck.tsx` and `src/slides/active-deck-metadata.ts`, not by assuming `src/slides/Presentation.tsx` is rendered.
+4. Prefer `@revealjs/react` components: `Deck`, `Slide`, `Stack`, `Fragment`, `Code`, and `Markdown`.
+5. Let `@revealjs/react` own Reveal initialization, cleanup, sync, events, and config updates.
+6. Use React props or Reveal `data-*` attributes for backgrounds, transitions, fragments, notes, auto-animate, and lightbox behavior.
+7. Keep the default plugin array stable and small unless the user explicitly asks for a default policy change.
+8. Build the smallest correct change, then validate with the repo scripts.
+
+### Implement
+
+- Common deck work stays in this body plus `references/authoring-patterns.md`.
+- Plugin, migration, or docs work loads `references/repo-workflows.md`.
+- Export work loads `references/export-workflows.md` before choosing tools.
+- Completion work loads `references/validation.md` before final reporting.
+
+## PowerPoint Export Logic
+
+Choose export path by intent, not by file extension alone.
+
+| User Need                      | Preferred Path                   | Output  | Trade-Off                                |
+| ------------------------------ | -------------------------------- | ------- | ---------------------------------------- |
+| Editable text-first deck       | Pandoc Markdown to PPTX          | `.pptx` | Good editability, limited Reveal styling |
+| Visual fidelity to Reveal deck | Screenshot-backed PptxGenJS deck | `.pptx` | Pixel-faithful, text not editable        |
+| Native editable designed PPTX  | PptxGenJS shape generation       | `.pptx` | Best control, needs a custom script      |
+| Speaker handout / delivery     | Reveal PDF export                | `.pdf`  | Best supported by Reveal, not PPTX       |
+| Legacy `.ppt` required         | PPTX then LibreOffice convert    | `.ppt`  | Compatibility path, may lose fidelity    |
+
+Default to asking one question when PPTX intent is unclear: `editable content` or `visual fidelity`. If the user says “best” without choosing, prefer editable Pandoc for outline-heavy decks and screenshot-backed PptxGenJS for polished visual decks.
+
+## Scaling Strategy
+
+| Scope                       | Execution                                                                                                 |
+| --------------------------- | --------------------------------------------------------------------------------------------------------- |
+| 1-2 slides                  | Single-pass edit plus focused browser/test validation                                                     |
+| 3-10 slides                 | Create outline, implement sections, then visual/accessibility pass                                        |
+| Full deck                   | Build narrative arc first, implement in chunks, validate after each major section                         |
+| Plugin/export/config change | Inspect metadata/docs/tests first, update all policy surfaces together                                    |
+| Legacy migration            | Archive source, port intentionally, keep generated/vendor output out unless needed for runnable snapshots |
+
+## Reference File Index
+
+Do not load every reference by default. Load only the file needed for the selected workflow.
+
+| File                               | Content                                                       | Read When                      |
+| ---------------------------------- | ------------------------------------------------------------- | ------------------------------ |
+| `references/repo-workflows.md`     | Repo map, commands, default plugin policy, migration rules    | Any codebase workflow          |
+| `references/authoring-patterns.md` | Slide structure, design, React Reveal patterns, accessibility | Create, edit, design, polish   |
+| `references/export-workflows.md`   | PDF, PPTX, PPT strategy with Pandoc/PptxGenJS/LibreOffice     | Export workflows               |
+| `references/validation.md`         | Validation matrix, browser QA, failure triage                 | Validate, release, after edits |
+
+## Progressive Disclosure
+
+Use the dispatch table and classifier first. Load `references/*.md` only when the workflow requires deeper repo, authoring, export, or validation guidance.
+
+## Validation Contract
+
+Maintainer-only skill-definition checks are for edits to `skills/slides-smith/`, not normal deck workflows. Before declaring this project-local skill complete, run the local checks from the slides repo and the audit from the agents repo. Set `SLIDES_REPO` and `AGENTS_REPO` first:
+
+```bash
+SLIDES_REPO=/Users/ww/dev/projects/slides
+AGENTS_REPO=/Users/ww/dev/projects/agents
+
+cd "$SLIDES_REPO"
+uv run wagents validate
+uv run wagents eval validate
+
+cd "$AGENTS_REPO"
+uv run python skills/skill-creator/scripts/audit.py "$SLIDES_REPO/skills/slides-smith/"
+```
+
+Do not require `uv run wagents package slides-smith --dry-run` for this project-local skill. The current packager resolves skill names from the central agents repo and fails unless this skill is promoted there first.
+
+Before declaring slide-deck work complete, run the relevant repo validation from `references/validation.md`. Full completion requires zero errors or an explicit note about any command that could not run.
+
+## Critical Rules
+
+1. Never add `apps/` or move the root slides app without explicit user approval.
+2. Never register the Reveal Markdown plugin by default; use React `Markdown` for markdown slides.
+3. Never mutate `src/lib/reveal-plugins.ts` without also syncing plugin metadata, README, and docs.
+4. Never add a community plugin to defaults when an opt-in preset satisfies the deck need.
+5. Always run `pnpm validate:plugin-presets` after changing preset modules or optional plugin dependencies.
+6. Always run `pnpm validate:slides` after build, Reveal config, plugin, or slide-structure changes.
+7. Always run `pnpm test:e2e` after navigation, layout, interaction, accessibility, or export-affecting changes.
+8. Do not add export dependencies or scripts without checking existing `package.json` first.
+9. For PPTX export, explicitly classify editability vs visual fidelity before choosing Pandoc or PptxGenJS.
+10. Keep archived `legacy/` content out of active lint/build paths unless intentionally porting it.
+
+## Canonical Terms
+
+Canonical terms (use these exactly throughout):
+
+- Workflows: "Create", "Edit", "Design", "Plugin", "Export", "Validate", "Docs", "Migrate", "Release"
+- Export paths: "Pandoc PPTX", "Screenshot PPTX", "Native PPTX", "Reveal PDF", "Legacy PPT"
+- Plugin statuses: "default", "opt-in", "lab", "avoid"
+- Validation levels: "focused", "relevant", "full"

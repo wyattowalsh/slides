@@ -1,0 +1,24 @@
+{
+	"optInPlugins": [
+		{
+			"name": "Appearance",
+			"javaScriptMarkers": ["reveal.js-appearance", "appearancePlugins"],
+			"cssMarkers": ["data-appearance"]
+		},
+		{
+			"name": "Mermaid",
+			"javaScriptMarkers": ["reveal.js-mermaid-plugin", "mermaidPlugins"],
+			"cssMarkers": []
+		},
+		{
+			"name": "Simplemenu",
+			"javaScriptMarkers": ["reveal.js-simplemenu", "simplemenuPlugins"],
+			"cssMarkers": ["simplemenu"]
+		},
+		{
+			"name": "Verticator",
+			"javaScriptMarkers": ["reveal.js-verticator", "verticatorPlugins"],
+			"cssMarkers": [".verticator"]
+		}
+	]
+}

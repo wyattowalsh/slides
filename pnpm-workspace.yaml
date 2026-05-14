@@ -1,0 +1,10 @@
+packages:
+  - .
+  - docs
+  - packages/*
+overrides:
+  postcss: 8.5.14
+allowBuilds:
+  esbuild: true
+  puppeteer: false
+  sharp: false

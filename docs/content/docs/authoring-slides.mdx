@@ -1,0 +1,49 @@
+---
+title: Authoring Slides
+description: Patterns for writing Reveal.js decks with React.
+---
+
+Use official `@revealjs/react` components as the default authoring surface.
+
+## Active Deck Boundary
+
+The app renders the deck exported from `src/slides/active-deck.tsx`. Keep the active deck source path and E2E navigation headings in `src/slides/active-deck-metadata.ts` so docs, tests, and authoring workflows agree on the current deck without hardcoding a stale slide file.
+
+`src/slides/Presentation.tsx` is a starter/example deck. Point `active-deck.tsx` at it only when you intentionally want the example deck to be the rendered app.
+
+## Core Components
+
+- `Deck` owns initialization, cleanup, sync, event wiring, and config updates.
+- `Slide` maps React props to Reveal `data-*` attributes.
+- `Stack` groups vertical slides.
+- `Fragment` reveals content incrementally.
+- `Code` renders syntax-highlighted code through the Highlight plugin.
+- `Markdown` renders markdown slides directly without the Reveal Markdown plugin.
+
+## Keep Config Stable
+
+Reveal plugins are initialization-only. Keep `src/lib/reveal-plugins.ts` stable and avoid toggling plugin arrays at runtime.
+
+## Prefer Reveal Attributes
+
+Use slide props and Reveal `data-*` attributes for backgrounds, lightbox previews, transitions, notes, and auto-animate.
+
+```tsx
+<Slide backgroundColor="#111827" autoAnimate>
+  <h2 data-id="title">Declarative slide behavior</h2>
+</Slide>
+```
+
+## Markdown
+
+React `Markdown` handles markdown slides directly:
+
+```tsx
+<Markdown verticalSeparator="^\\n--\\n$">
+  {`## Slide
+
+--
+
+## Vertical Slide`}
+</Markdown>
+```

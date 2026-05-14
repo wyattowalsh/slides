@@ -1,0 +1,49 @@
+---
+title: Getting Started
+description: Install dependencies and run the deck or docs site.
+---
+
+## Requirements
+
+- Node.js `>=24`
+- pnpm, pinned in the root `packageManager` field
+
+## Install
+
+```bash
+pnpm install
+```
+
+## Run The Deck
+
+```bash
+pnpm dev
+```
+
+Open `http://127.0.0.1:5173`.
+
+## Run The Docs
+
+```bash
+pnpm docs:dev
+```
+
+Open `http://127.0.0.1:3000`.
+
+## Validate Before Shipping
+
+For small content-only edits, run focused checks:
+
+```bash
+pnpm typecheck
+pnpm lint
+pnpm validate:slides
+```
+
+Before broad slide, plugin, docs, or export workflow changes ship, run the full relevant suite:
+
+```bash
+pnpm validate
+```
+
+`pnpm validate` includes dev-server and production-preview E2E smoke tests. Use manual inspection or export-specific checks when final PDF/PPTX fidelity matters.

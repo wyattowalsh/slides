@@ -1,0 +1,70 @@
+---
+title: Reveal Plugins
+description: Default, opt-in, lab, and avoided plugin policy.
+---
+
+The default plugin set stays small so every deck starts from a predictable baseline. Community plugins are reviewed in metadata first, then promoted to opt-in preset modules only when they have a concrete deck use case.
+
+## Default
+
+| Plugin     | Source                       | Why                                        |
+| ---------- | ---------------------------- | ------------------------------------------ |
+| Highlight  | `reveal.js/plugin/highlight` | Required by React `Code`                   |
+| Notes      | `reveal.js/plugin/notes`     | Speaker notes and presenter workflows      |
+| Search     | `reveal.js/plugin/search`    | Helpful during authoring and presentations |
+| Zoom       | `reveal.js/plugin/zoom`      | Useful for dense slides                    |
+| Math.KaTeX | `reveal.js/plugin/math`      | Official math support                      |
+| CopyCode   | `reveal.js-copycode@1.4.2`   | Copy buttons for code blocks               |
+
+Do not add the Reveal Markdown plugin by default. React `Markdown` renders markdown slides directly.
+
+## Opt-In
+
+| Plugin                             | Status           | Import Pattern                           | Risk   | Why                                                  |
+| ---------------------------------- | ---------------- | ---------------------------------------- | ------ | ---------------------------------------------------- |
+| `reveal.js-appearance@1.4.0`       | Preset available | `@/lib/reveal-plugin-presets/appearance` | Low    | Maintained ESM plugin with explicit Vite CSS import. |
+| `reveal.js-verticator@1.3.2`       | Preset available | `@/lib/reveal-plugin-presets/verticator` | Low    | Strong Reveal 4+ peer and ESM/CSS package shape.     |
+| `reveal.js-mermaid-plugin@11.12.3` | Preset available | `@/lib/reveal-plugin-presets/mermaid`    | Medium | Useful, but too large for every deck.                |
+| `reveal.js-simplemenu@2.0.3`       | Preset available | `@/lib/reveal-plugin-presets/simplemenu` | Medium | Deck-specific navigation chrome.                     |
+
+Use opt-in plugins statically before the React `Deck` mounts. `@revealjs/react` captures plugins during Reveal initialization, so changing a plugin array after mount is not a runtime toggle.
+
+```tsx
+import { Deck } from "@revealjs/react";
+import { revealPlugins } from "@/lib/reveal-plugins";
+import { appearancePlugins } from "@/lib/reveal-plugin-presets/appearance";
+
+const plugins = [...revealPlugins, ...appearancePlugins];
+```
+
+Presets can also export config that must be merged into the deck config. Mermaid ships `mermaidPresetConfig` so Mermaid does not auto-start outside Reveal's lifecycle:
+
+```tsx
+import { Deck } from "@revealjs/react";
+import { revealConfig } from "@/lib/reveal-config";
+import { revealPlugins } from "@/lib/reveal-plugins";
+import {
+  mermaidPlugins,
+  mermaidPresetConfig,
+} from "@/lib/reveal-plugin-presets/mermaid";
+
+const plugins = [...revealPlugins, ...mermaidPlugins];
+const config = { ...revealConfig, ...mermaidPresetConfig };
+```
+
+Run `pnpm validate:plugin-presets` after adding or changing preset modules. It compiles optional preset imports and CSS through Vite and checks config exports such as Mermaid's `startOnLoad: false` contract; it does not prove runtime Reveal initialization.
+
+Run `pnpm validate:bundle` after a deck build to confirm opt-in preset markers from `src/lib/reveal-plugin-bundle-guards.json` are absent from the default production bundle. `pnpm validate:slides` runs this check after rendered deck validation.
+
+## Lab Or Avoid
+
+- Treat `reveal.js-plugins` as a lab collection; import specific plugins only after review.
+- Useful lab candidates include `reveal.js-drawer`, Rajgoel `chalkboard`, Rajgoel `audio-slideshow`, Rajgoel `animate`, Rajgoel `fullscreen`, `reveal.js-pointer`, `reveal.js-fsfx`, `rschmehl/attribution`, `reveal.js-relativenumber`, `reveal-onetimer`, and `reveal-skip-fragments`.
+- Treat `cologneintelligence/reveal.js-remote`, Rajgoel `seminar`/`poll`/`questions`, and `reveald3` as lab candidates until a deck-specific fixture proves the integration and any server/privacy model is reviewed.
+- Avoid old or missing packages such as `revealjs-animated`, `reveal-mark-plugin`, and `reveal-countdown` until a maintained install path exists.
+- Avoid stale or superseded navigation chrome such as `reveal.js-menu`, `reveal.js-toolbar`, legacy TOC/footer plugins, and old jump plugins unless a deck proves Simplemenu or built-in Reveal features are insufficient.
+- Avoid arbitrary execution or external-content loaders such as Anything, live-code/editor plugins, runtime CSS editors, terminal execution, and external HTML loaders unless the deck runs in a sandboxed demo environment.
+- Avoid remote-control, webcam, voice, MQTT, analytics, or live-code plugins unless privacy and security have been reviewed.
+- Avoid PlantUML-style server renderers by default because network dependencies make talks less reliable.
+
+Update `src/lib/reveal-plugins.ts`, `src/lib/reveal-plugin-metadata.ts`, `src/lib/reveal-plugin-bundle-guards.json`, this page, and README together when changing defaults. Preset-only additions change `src/lib/reveal-plugin-presets/`, metadata, bundle guards, README, and this page, but not `src/lib/reveal-plugins.ts`.

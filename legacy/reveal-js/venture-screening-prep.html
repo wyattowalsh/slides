@@ -1,0 +1,1437 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Venture Screening Prep</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+    <link rel="stylesheet" href="dist/plugin/highlight/monokai.css" />
+
+    <style>
+      :root {
+        --ink: #0d1110;
+        --ink-2: #171c1a;
+        --ink-3: #252b28;
+        --paper: #f5f7f1;
+        --muted: #aeb8b0;
+        --line: rgba(245, 247, 241, 0.16);
+        --green: #7cffc4;
+        --lime: #d9ff4f;
+        --coral: #ff6b4a;
+        --gold: #ffd166;
+        --cyan: #73d7ff;
+      }
+
+      body {
+        background:
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px
+          ),
+          var(--ink);
+        background-size: 64px 64px;
+      }
+
+      .reveal {
+        color: var(--paper);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 30px;
+      }
+
+      .reveal .slides {
+        text-align: left;
+      }
+
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4 {
+        color: var(--paper);
+        font-weight: 760;
+        letter-spacing: 0;
+        line-height: 0.98;
+        text-transform: none;
+      }
+
+      .reveal h1 {
+        font-size: 2.85em;
+        max-width: 10.8em;
+      }
+
+      .reveal h2 {
+        font-size: 2.15em;
+        margin-bottom: 0.32em;
+      }
+
+      .reveal h3 {
+        font-size: 1.08em;
+        margin: 0 0 0.45em;
+      }
+
+      .reveal p,
+      .reveal li {
+        color: rgba(245, 247, 241, 0.84);
+        line-height: 1.28;
+      }
+
+      .reveal strong {
+        color: var(--paper);
+      }
+
+      .reveal code {
+        color: var(--green);
+      }
+
+      .reveal pre {
+        box-shadow: none;
+        width: 100%;
+      }
+
+      .reveal pre code {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        font-size: 0.82em;
+        line-height: 1.3;
+        max-height: none;
+        padding: 1.1em;
+      }
+
+      .slide-shell {
+        min-height: 610px;
+        position: relative;
+      }
+
+      .kicker {
+        align-items: center;
+        color: var(--green);
+        display: inline-flex;
+        font-size: 0.58em;
+        font-weight: 720;
+        gap: 0.5em;
+        margin-bottom: 1.15em;
+        text-transform: uppercase;
+      }
+
+      .kicker::before {
+        background: var(--green);
+        content: "";
+        display: inline-block;
+        height: 0.7em;
+        width: 0.7em;
+      }
+
+      .lede {
+        color: rgba(245, 247, 241, 0.78);
+        font-size: 1em;
+        max-width: 34em;
+      }
+
+      .accent {
+        color: var(--lime);
+      }
+
+      .topline {
+        align-items: center;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.2em;
+        padding-bottom: 0.7em;
+      }
+
+      .topline .eyebrow {
+        color: var(--muted);
+        font-size: 0.55em;
+        font-weight: 720;
+        text-transform: uppercase;
+      }
+
+      .topline .count {
+        background: var(--paper);
+        color: var(--ink);
+        font-size: 0.54em;
+        font-weight: 820;
+        padding: 0.38em 0.7em;
+      }
+
+      .title-grid {
+        align-items: stretch;
+        display: grid;
+        gap: 1.1em;
+        grid-template-columns: 1.18fr 0.82fr;
+      }
+
+      .signal-board {
+        background:
+          linear-gradient(120deg, rgba(124, 255, 196, 0.12), transparent 36%),
+          linear-gradient(300deg, rgba(255, 209, 102, 0.1), transparent 42%),
+          var(--ink-2);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        min-height: 420px;
+        padding: 1em;
+        position: relative;
+      }
+
+      .signal-board::before {
+        border: 1px solid rgba(245, 247, 241, 0.08);
+        content: "";
+        inset: 22px;
+        position: absolute;
+      }
+
+      .node {
+        align-items: center;
+        border: 1px solid rgba(245, 247, 241, 0.24);
+        border-radius: 50%;
+        display: flex;
+        font-size: 0.48em;
+        font-weight: 800;
+        height: 88px;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        width: 88px;
+        z-index: 1;
+      }
+
+      .node.customer {
+        background: var(--coral);
+        color: var(--ink);
+        left: 42px;
+        top: 56px;
+      }
+
+      .node.tech {
+        background: var(--green);
+        color: var(--ink);
+        right: 64px;
+        top: 132px;
+      }
+
+      .node.market {
+        background: var(--gold);
+        bottom: 118px;
+        color: var(--ink);
+        left: 145px;
+      }
+
+      .connector {
+        background: rgba(245, 247, 241, 0.36);
+        height: 2px;
+        position: absolute;
+        transform-origin: left center;
+        z-index: 0;
+      }
+
+      .connector.one {
+        left: 128px;
+        top: 108px;
+        transform: rotate(16deg);
+        width: 245px;
+      }
+
+      .connector.two {
+        left: 220px;
+        top: 282px;
+        transform: rotate(-34deg);
+        width: 230px;
+      }
+
+      .connector.three {
+        left: 86px;
+        top: 144px;
+        transform: rotate(62deg);
+        width: 210px;
+      }
+
+      .metric-strip {
+        bottom: 30px;
+        display: grid;
+        gap: 0.65em;
+        grid-template-columns: repeat(3, 1fr);
+        left: 30px;
+        position: absolute;
+        right: 30px;
+      }
+
+      .metric {
+        border-top: 3px solid var(--green);
+        font-size: 0.48em;
+        padding-top: 0.55em;
+      }
+
+      .metric:nth-child(2) {
+        border-color: var(--coral);
+      }
+
+      .metric:nth-child(3) {
+        border-color: var(--gold);
+      }
+
+      .metric b {
+        color: var(--paper);
+        display: block;
+        font-size: 1.7em;
+        line-height: 1;
+      }
+
+      .framework {
+        display: grid;
+        gap: 0.75em;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .pillar,
+      .prep-card,
+      .evidence-card,
+      .risk-card,
+      .timeline-item,
+      .flash-card {
+        background: rgba(245, 247, 241, 0.065);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 0.8em;
+      }
+
+      .pillar {
+        min-height: 315px;
+        position: relative;
+      }
+
+      .pillar::after {
+        background: var(--green);
+        bottom: 0.8em;
+        content: "";
+        height: 5px;
+        left: 0.8em;
+        position: absolute;
+        right: 0.8em;
+      }
+
+      .pillar:nth-child(2)::after {
+        background: var(--coral);
+      }
+
+      .pillar:nth-child(3)::after {
+        background: var(--gold);
+      }
+
+      .pillar .label,
+      .prep-card .label,
+      .evidence-card .label,
+      .risk-card .label,
+      .timeline-item .label {
+        color: var(--muted);
+        display: block;
+        font-size: 0.5em;
+        font-weight: 760;
+        margin-bottom: 0.75em;
+        text-transform: uppercase;
+      }
+
+      .pillar h3,
+      .prep-card h3,
+      .evidence-card h3,
+      .risk-card h3,
+      .timeline-item h3 {
+        color: var(--paper);
+        font-size: 0.95em;
+        line-height: 1.08;
+      }
+
+      .pillar p,
+      .prep-card p,
+      .evidence-card p,
+      .risk-card p,
+      .timeline-item p,
+      .flash-card p {
+        font-size: 0.64em;
+        margin: 0.35em 0 0;
+      }
+
+      .two-col {
+        display: grid;
+        gap: 0.9em;
+        grid-template-columns: 0.95fr 1.05fr;
+      }
+
+      .grid-2 {
+        display: grid;
+        gap: 0.65em;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid-3 {
+        display: grid;
+        gap: 0.65em;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .grid-4 {
+        display: grid;
+        gap: 0.55em;
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .question {
+        border-left: 5px solid var(--green);
+        font-size: 1.12em;
+        font-weight: 730;
+        line-height: 1.12;
+        margin: 0 0 0.75em;
+        max-width: 24em;
+        padding-left: 0.65em;
+      }
+
+      .question.coral {
+        border-color: var(--coral);
+      }
+
+      .question.gold {
+        border-color: var(--gold);
+      }
+
+      .question.cyan {
+        border-color: var(--cyan);
+      }
+
+      .prompt-list {
+        display: grid;
+        gap: 0.46em;
+        margin-top: 0.7em;
+      }
+
+      .prompt-list div {
+        align-items: flex-start;
+        background: rgba(245, 247, 241, 0.055);
+        border-left: 3px solid rgba(124, 255, 196, 0.7);
+        display: grid;
+        font-size: 0.62em;
+        grid-template-columns: 5.7em 1fr;
+        min-height: 3.2em;
+        padding: 0.55em 0.65em;
+      }
+
+      .prompt-list b {
+        color: var(--paper);
+        font-size: 0.9em;
+        text-transform: uppercase;
+      }
+
+      .ladder {
+        align-items: end;
+        display: grid;
+        gap: 0.28em;
+        grid-template-columns: repeat(9, 1fr);
+        height: 325px;
+        margin-top: 0.85em;
+      }
+
+      .ladder-step {
+        align-items: center;
+        background: rgba(245, 247, 241, 0.07);
+        border: 1px solid var(--line);
+        border-radius: 4px 4px 0 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 66px;
+        padding: 0.35em 0.2em;
+        text-align: center;
+      }
+
+      .ladder-step.active {
+        background: rgba(124, 255, 196, 0.18);
+        border-color: rgba(124, 255, 196, 0.65);
+      }
+
+      .ladder-step.target {
+        background: rgba(255, 209, 102, 0.18);
+        border-color: rgba(255, 209, 102, 0.72);
+      }
+
+      .ladder-step b {
+        color: var(--paper);
+        display: block;
+        font-size: 0.78em;
+      }
+
+      .ladder-step span {
+        color: var(--muted);
+        font-size: 0.44em;
+        line-height: 1.1;
+      }
+
+      .delta-table {
+        border-collapse: collapse;
+        font-size: 0.62em;
+        width: 100%;
+      }
+
+      .delta-table th,
+      .delta-table td {
+        border-bottom: 1px solid var(--line);
+        padding: 0.72em 0.55em;
+        vertical-align: top;
+      }
+
+      .delta-table th {
+        color: var(--green);
+        font-size: 0.85em;
+        text-transform: uppercase;
+      }
+
+      .delta-table td:first-child {
+        color: var(--paper);
+        font-weight: 720;
+      }
+
+      .market-map {
+        display: grid;
+        gap: 0.65em;
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+
+      .wedge {
+        background:
+          linear-gradient(90deg, rgba(124, 255, 196, 0.16), transparent 55%),
+          repeating-linear-gradient(
+            135deg,
+            rgba(245, 247, 241, 0.06),
+            rgba(245, 247, 241, 0.06) 8px,
+            transparent 8px,
+            transparent 18px
+          );
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        height: 335px;
+        padding: 0.9em;
+        position: relative;
+      }
+
+      .wedge-band {
+        border-left: 5px solid var(--green);
+        font-size: 0.58em;
+        margin-bottom: 0.8em;
+        padding-left: 0.55em;
+      }
+
+      .wedge-band:nth-child(2) {
+        border-color: var(--gold);
+        margin-left: 4em;
+      }
+
+      .wedge-band:nth-child(3) {
+        border-color: var(--coral);
+        margin-left: 8em;
+      }
+
+      .allocation {
+        display: grid;
+        gap: 0.75em;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .bar {
+        background: rgba(245, 247, 241, 0.09);
+        border-radius: 4px;
+        height: 34px;
+        overflow: hidden;
+      }
+
+      .bar span {
+        display: block;
+        height: 100%;
+      }
+
+      .bar.dev span {
+        background: var(--green);
+        width: 50%;
+      }
+
+      .bar.validation span {
+        background: var(--gold);
+        width: 30%;
+      }
+
+      .bar.commercial span {
+        background: var(--coral);
+        width: 20%;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 0.55em;
+        grid-template-columns: repeat(5, 1fr);
+        margin-top: 0.8em;
+      }
+
+      .timeline-item {
+        border-top: 4px solid var(--green);
+        min-height: 255px;
+      }
+
+      .timeline-item:nth-child(2) {
+        border-color: var(--cyan);
+      }
+
+      .timeline-item:nth-child(3) {
+        border-color: var(--gold);
+      }
+
+      .timeline-item:nth-child(4) {
+        border-color: var(--coral);
+      }
+
+      .timeline-item:nth-child(5) {
+        border-color: var(--lime);
+      }
+
+      .checklist {
+        display: grid;
+        gap: 0.45em;
+      }
+
+      .checklist li {
+        background: rgba(245, 247, 241, 0.055);
+        border-left: 3px solid var(--green);
+        font-size: 0.62em;
+        list-style: none;
+        padding: 0.55em 0.65em;
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4em;
+        margin-top: 0.75em;
+      }
+
+      .badge {
+        background: rgba(245, 247, 241, 0.08);
+        border: 1px solid var(--line);
+        color: var(--paper);
+        font-size: 0.5em;
+        font-weight: 760;
+        padding: 0.42em 0.58em;
+        text-transform: uppercase;
+      }
+
+      .quote-strip {
+        border-left: 4px solid var(--gold);
+        color: var(--paper);
+        font-size: 0.82em;
+        font-weight: 680;
+        line-height: 1.25;
+        margin-top: 1em;
+        padding-left: 0.8em;
+      }
+
+      .evidence-snap {
+        aspect-ratio: 16 / 9;
+        background:
+          linear-gradient(90deg, rgba(124, 255, 196, 0.28), transparent 44%),
+          linear-gradient(0deg, rgba(255, 107, 74, 0.14), transparent 58%),
+          var(--ink-3);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        cursor: zoom-in;
+        display: grid;
+        grid-template-rows: 0.55fr 1fr;
+        padding: 0.8em;
+      }
+
+      .evidence-snap .snap-title {
+        color: var(--paper);
+        font-size: 0.64em;
+        font-weight: 800;
+      }
+
+      .evidence-snap .snap-lines {
+        align-self: end;
+        display: grid;
+        gap: 0.28em;
+      }
+
+      .evidence-snap .snap-lines i {
+        background: rgba(245, 247, 241, 0.22);
+        display: block;
+        height: 8px;
+      }
+
+      .evidence-snap .snap-lines i:nth-child(1) {
+        width: 88%;
+      }
+
+      .evidence-snap .snap-lines i:nth-child(2) {
+        width: 66%;
+      }
+
+      .evidence-snap .snap-lines i:nth-child(3) {
+        width: 45%;
+      }
+
+      .answer-stack {
+        min-height: 360px;
+      }
+
+      .stack-panel {
+        background: var(--ink-2);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        min-height: 280px;
+        padding: 1.1em;
+        width: 84%;
+      }
+
+      .stack-panel h3 {
+        font-size: 1.25em;
+      }
+
+      .stack-panel p {
+        font-size: 0.72em;
+      }
+
+      .markdown-block ul {
+        display: grid;
+        gap: 0.35em;
+        margin: 0;
+      }
+
+      .markdown-block li {
+        font-size: 0.72em;
+      }
+
+      @media (max-width: 900px) {
+        .reveal {
+          font-size: 24px;
+        }
+
+        .title-grid,
+        .two-col,
+        .market-map,
+        .allocation {
+          grid-template-columns: 1fr;
+        }
+
+        .framework,
+        .grid-3,
+        .grid-4,
+        .timeline {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-background-color="#0d1110">
+          <div class="slide-shell title-grid">
+            <div>
+              <div class="kicker">Founder Screening Prep</div>
+              <h1>
+                Venture Screening<br /><span class="accent">Narrative</span>
+              </h1>
+              <p class="lede">
+                A working deck for converting ten screening questions into a
+                crisp customer-backed, technology-backed, fundable story.
+              </p>
+              <div class="badge-row">
+                <span class="badge">Customer pain</span>
+                <span class="badge">Technical edge</span>
+                <span class="badge">Proof path</span>
+                <span class="badge">Capital plan</span>
+              </div>
+            </div>
+            <div class="signal-board r-stretch">
+              <div class="connector one"></div>
+              <div class="connector two"></div>
+              <div class="connector three"></div>
+              <div class="node customer">Customer</div>
+              <div class="node tech">Advance</div>
+              <div class="node market">Value</div>
+              <div class="metric-strip">
+                <div class="metric"><b>10</b> prompts</div>
+                <div class="metric"><b>3</b> proof lanes</div>
+                <div class="metric"><b>1</b> narrative</div>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            Open with a calm framing sentence: "I will anchor the venture in a
+            concrete user pain, then show why the technology is differentiated,
+            what proof remains, and how the funding request maps to the next
+            12-18 months."
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Narrative Spine</span>
+            <span class="count">0 / setup</span>
+          </div>
+          <h2>Answer the questionnaire as one story.</h2>
+          <div class="framework">
+            <div class="pillar fragment fade-up">
+              <span class="label">Need</span>
+              <h3>Who hurts, how badly, and why now?</h3>
+              <p>
+                Name the beachhead customer, the workflow failure, the
+                measurable cost, and the trigger that makes the problem urgent.
+              </p>
+            </div>
+            <div class="pillar fragment fade-up">
+              <span class="label">Edge</span>
+              <h3>What can you do that the current state cannot?</h3>
+              <p>
+                Contrast the existing workaround with your technical advance,
+                then connect that advance to a testable performance claim.
+              </p>
+            </div>
+            <div class="pillar fragment fade-up">
+              <span class="label">Execution</span>
+              <h3>What proof and capital unlock the next stage?</h3>
+              <p>
+                Show TRL, validation evidence, IP posture, team fit, funding
+                allocation, milestones, and institutional obligations.
+              </p>
+            </div>
+          </div>
+          <aside class="notes">
+            Do not answer as ten disconnected essays. Tie every answer back to
+            this spine: customer pain, technical edge, proof plan, and value
+            capture.
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Question 1</span>
+            <span class="count">customer segment</span>
+          </div>
+          <p class="question">
+            What specific customer segment or end-user problem are you hoping to
+            address?
+          </p>
+          <div class="two-col">
+            <div class="prep-card">
+              <span class="label">Answer shape</span>
+              <h3>Specific user, specific job, specific pain.</h3>
+              <div class="quote-strip">
+                For [beachhead user] doing [job], the current [workflow] fails
+                because [constraint], causing [measurable loss].
+              </div>
+            </div>
+            <div class="prompt-list">
+              <div>
+                <b>User</b
+                ><span>Who has budget, urgency, and a repeated workflow?</span>
+              </div>
+              <div>
+                <b>Pain</b
+                ><span
+                  >What is slow, risky, expensive, inaccurate, or
+                  impossible?</span
+                >
+              </div>
+              <div>
+                <b>Cost</b
+                ><span
+                  >What metric exposes the pain: time, waste, risk, revenue,
+                  compliance?</span
+                >
+              </div>
+              <div>
+                <b>Trigger</b
+                ><span>Why does this segment need a new answer now?</span>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            Prepare one beachhead segment, not a broad market label. If you have
+            multiple users, name the end user and the economic buyer separately.
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Question 2</span>
+            <span class="count">technology advance</span>
+          </div>
+          <p class="question coral">
+            Can you provide a brief overview of the technology and how it
+            advances beyond the current state of the art?
+          </p>
+          <table class="delta-table">
+            <thead>
+              <tr>
+                <th>Layer</th>
+                <th>Current state</th>
+                <th>Your advance</th>
+                <th>Proof signal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="fragment">
+                <td>Core mechanism</td>
+                <td>What today's best solution can and cannot do.</td>
+                <td>The technical principle that changes the limit.</td>
+                <td>Benchmark, experiment, or validation result.</td>
+              </tr>
+              <tr class="fragment">
+                <td>System design</td>
+                <td>
+                  Where integration, cost, latency, reliability, or scale
+                  breaks.
+                </td>
+                <td>The architecture that removes the bottleneck.</td>
+                <td>Prototype metric or credible engineering model.</td>
+              </tr>
+              <tr class="fragment">
+                <td>User outcome</td>
+                <td>The old workflow's performance ceiling.</td>
+                <td>The new capability visible to the customer.</td>
+                <td>Before-after task, cost, or risk reduction.</td>
+              </tr>
+            </tbody>
+          </table>
+          <aside class="notes">
+            Avoid jargon-first explanations. Start with the capability, name the
+            technical breakthrough, and finish with the evidence you can show or
+            still need to generate.
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Question 3</span>
+            <span class="count">TRL</span>
+          </div>
+          <p class="question gold">
+            What is the current Technology Readiness Level, and what milestones
+            remain to achieve proof-of-concept or prototype?
+          </p>
+          <div class="ladder">
+            <div class="ladder-step" style="height: 82px">
+              <b>1</b><span>principles</span>
+            </div>
+            <div class="ladder-step" style="height: 106px">
+              <b>2</b><span>concept</span>
+            </div>
+            <div class="ladder-step active" style="height: 136px">
+              <b>3</b><span>experimental proof</span>
+            </div>
+            <div class="ladder-step target" style="height: 166px">
+              <b>4</b><span>lab validation</span>
+            </div>
+            <div class="ladder-step target" style="height: 196px">
+              <b>5</b><span>relevant environment</span>
+            </div>
+            <div class="ladder-step" style="height: 226px">
+              <b>6</b><span>prototype demo</span>
+            </div>
+            <div class="ladder-step" style="height: 256px">
+              <b>7</b><span>operational demo</span>
+            </div>
+            <div class="ladder-step" style="height: 286px">
+              <b>8</b><span>qualified system</span>
+            </div>
+            <div class="ladder-step" style="height: 316px">
+              <b>9</b><span>proven system</span>
+            </div>
+          </div>
+          <aside class="notes">
+            Replace the highlighted TRL with your actual level. Then state the
+            next two gates: what must be built, what must be measured, and what
+            would convince a skeptical reviewer.
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Question 4</span>
+            <span class="count">validation</span>
+          </div>
+          <p class="question cyan">
+            Have you engaged prospective customers or users to validate market
+            need? What feedback or insights have you gathered?
+          </p>
+          <div class="grid-3">
+            <div class="evidence-card fragment fade-up">
+              <span class="label">Discovery</span>
+              <h3>Who you spoke with</h3>
+              <p>
+                Count, role, segment, decision authority, and interview format.
+              </p>
+            </div>
+            <div class="evidence-card fragment fade-up">
+              <span class="label">Pattern</span>
+              <h3>What repeated</h3>
+              <p>
+                Common failure modes, buying triggers, switching barriers, and
+                must-have proof.
+              </p>
+            </div>
+            <div class="evidence-card fragment fade-up">
+              <span class="label">Behavior</span>
+              <h3>What they did next</h3>
+              <p>
+                LOIs, pilot interest, data access, follow-up meetings, or paid
+                discovery.
+              </p>
+            </div>
+          </div>
+          <div class="grid-3" style="margin-top: 0.75em">
+            <div
+              class="evidence-snap"
+              data-preview-image="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201280%20720%22%3E%3Crect%20width=%221280%22%20height=%22720%22%20fill=%22%230d1110%22/%3E%3Crect%20x=%2280%22%20y=%2290%22%20width=%221120%22%20height=%2288%22%20fill=%22%237cffc4%22/%3E%3Crect%20x=%2280%22%20y=%22240%22%20width=%22860%22%20height=%2258%22%20fill=%22%23f5f7f1%22%20opacity=%22.55%22/%3E%3Crect%20x=%2280%22%20y=%22335%22%20width=%22710%22%20height=%2258%22%20fill=%22%23f5f7f1%22%20opacity=%22.35%22/%3E%3Crect%20x=%2280%22%20y=%22430%22%20width=%22980%22%20height=%2258%22%20fill=%22%23ffd166%22%20opacity=%22.75%22/%3E%3Ctext%20x=%2280%22%20y=%22610%22%20fill=%22%23f5f7f1%22%20font-family=%22Arial%22%20font-size=%2258%22%20font-weight=%22700%22%3EInterview%20Evidence%3C/text%3E%3C/svg%3E"
+            >
+              <div class="snap-title">Interview Evidence</div>
+              <div class="snap-lines"><i></i><i></i><i></i></div>
+            </div>
+            <div
+              class="evidence-snap"
+              data-preview-image="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201280%20720%22%3E%3Crect%20width=%221280%22%20height=%22720%22%20fill=%22%230d1110%22/%3E%3Cpath%20d=%22M120%20540L420%20310L710%20440L1020%20180%22%20fill=%22none%22%20stroke=%22%2373d7ff%22%20stroke-width=%2230%22/%3E%3Ccircle%20cx=%22120%22%20cy=%22540%22%20r=%2248%22%20fill=%22%23ff6b4a%22/%3E%3Ccircle%20cx=%22420%22%20cy=%22310%22%20r=%2248%22%20fill=%22%23ffd166%22/%3E%3Ccircle%20cx=%22710%22%20cy=%22440%22%20r=%2248%22%20fill=%22%237cffc4%22/%3E%3Ccircle%20cx=%221020%22%20cy=%22180%22%20r=%2248%22%20fill=%22%23d9ff4f%22/%3E%3Ctext%20x=%2280%22%20y=%22630%22%20fill=%22%23f5f7f1%22%20font-family=%22Arial%22%20font-size=%2258%22%20font-weight=%22700%22%3EWorkflow%20Map%3C/text%3E%3C/svg%3E"
+            >
+              <div class="snap-title">Workflow Map</div>
+              <div class="snap-lines"><i></i><i></i><i></i></div>
+            </div>
+            <div
+              class="evidence-snap"
+              data-preview-image="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201280%20720%22%3E%3Crect%20width=%221280%22%20height=%22720%22%20fill=%22%230d1110%22/%3E%3Crect%20x=%22110%22%20y=%22480%22%20width=%22180%22%20height=%22100%22%20fill=%22%23ff6b4a%22/%3E%3Crect%20x=%22360%22%20y=%22380%22%20width=%22180%22%20height=%22200%22%20fill=%22%23ffd166%22/%3E%3Crect%20x=%22610%22%20y=%22255%22%20width=%22180%22%20height=%22325%22%20fill=%22%237cffc4%22/%3E%3Crect%20x=%22860%22%20y=%22140%22%20width=%22180%22%20height=%22440%22%20fill=%22%23d9ff4f%22/%3E%3Cline%20x1=%2290%22%20y1=%22582%22%20x2=%221100%22%20y2=%22582%22%20stroke=%22%23f5f7f1%22%20stroke-width=%226%22%20opacity=%22.5%22/%3E%3Ctext%20x=%2280%22%20y=%2295%22%20fill=%22%23f5f7f1%22%20font-family=%22Arial%22%20font-size=%2258%22%20font-weight=%22700%22%3EPilot%20Signal%3C/text%3E%3C/svg%3E"
+            >
+              <div class="snap-title">Pilot Signal</div>
+              <div class="snap-lines"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <aside class="notes">
+            Use evidence artifacts here. Replace the placeholders with
+            screenshots or images of interview synthesis, workflow maps,
+            prototype reactions, or anonymized quotes.
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Question 5</span>
+            <span class="count">market opportunity</span>
+          </div>
+          <p class="question">
+            What is your current understanding of the market opportunity, and
+            how do you plan to capture value?
+          </p>
+          <div class="market-map">
+            <div class="wedge">
+              <div class="wedge-band">
+                <strong>Beachhead</strong><br />Where urgency and access are
+                highest.
+              </div>
+              <div class="wedge-band">
+                <strong>Expansion</strong><br />Adjacent workflows using the
+                same core capability.
+              </div>
+              <div class="wedge-band">
+                <strong>Platform</strong><br />Broader category once proof,
+                data, and trust compound.
+              </div>
+            </div>
+            <div class="prep-card">
+              <span class="label">Value capture</span>
+              <h3>Show the business model as a consequence of the workflow.</h3>
+              <ul class="checklist">
+                <li>Buyer and procurement path</li>
+                <li>Pricing anchor tied to customer value</li>
+                <li>Sales motion: pilot, deployment, expansion</li>
+                <li>Defensibility: data, workflow lock-in, integration, IP</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            If market sizing is uncertain, say so cleanly. A credible wedge plus
+            a rational value capture model is stronger than inflated TAM
+            arithmetic.
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Question 6</span>
+            <span class="count">IP</span>
+          </div>
+          <p class="question coral">
+            Are there intellectual property considerations, such as patents,
+            trade secrets, or licensing dependencies, related to your
+            technology?
+          </p>
+          <div class="grid-4">
+            <div class="risk-card fragment">
+              <span class="label">Own</span>
+              <h3>Patentable claims</h3>
+              <p>
+                Novel mechanism, implementation, system, or application area.
+              </p>
+            </div>
+            <div class="risk-card fragment">
+              <span class="label">Protect</span>
+              <h3>Trade secrets</h3>
+              <p>
+                Data, process tuning, model weights, manufacturing recipe, or
+                calibration.
+              </p>
+            </div>
+            <div class="risk-card fragment">
+              <span class="label">Use</span>
+              <h3>Licensed inputs</h3>
+              <p>
+                University IP, third-party code, datasets, materials, or lab
+                facilities.
+              </p>
+            </div>
+            <div class="risk-card fragment">
+              <span class="label">Check</span>
+              <h3>Freedom to operate</h3>
+              <p>Known prior art, blocking patents, and review timeline.</p>
+            </div>
+          </div>
+          <aside class="notes">
+            Answer with posture, not legal overconfidence. Say what is filed,
+            what is planned, what is kept secret, and what dependencies need
+            counsel review.
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Question 7</span>
+            <span class="count">team</span>
+          </div>
+          <p class="question gold">
+            What is the background and technical expertise of the founding team
+            or core contributors?
+          </p>
+          <div class="r-stack answer-stack">
+            <div class="stack-panel fragment fade-in-then-out">
+              <h3>Founder-market fit</h3>
+              <p>
+                Why this team understands the user, domain constraints, and
+                deployment environment.
+              </p>
+            </div>
+            <div class="stack-panel fragment fade-in-then-out">
+              <h3>Technical depth</h3>
+              <p>
+                What research, engineering, clinical, manufacturing, data, or
+                systems expertise is already covered.
+              </p>
+            </div>
+            <div class="stack-panel fragment fade-in-then-out">
+              <h3>Gap plan</h3>
+              <p>
+                Which hires, advisors, partners, or contractors complete the
+                next milestone.
+              </p>
+            </div>
+          </div>
+          <aside class="notes">
+            Connect each person's expertise to a near-term risk. A reviewer is
+            asking whether the team can retire the risks implied by the
+            milestones.
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Question 8</span>
+            <span class="count">funding</span>
+          </div>
+          <p class="question cyan">
+            How much funding are you seeking, and how would it be allocated
+            across technical development, validation, and commercialization
+            activities?
+          </p>
+          <div class="allocation">
+            <div class="prep-card">
+              <span class="label">Use of funds</span>
+              <h3>Ask for the amount that reaches a sharper proof point.</h3>
+              <div class="prompt-list">
+                <div>
+                  <b>50%</b
+                  ><span
+                    >Technical build, instrumentation, data, materials, compute,
+                    testing.</span
+                  >
+                </div>
+                <div>
+                  <b>30%</b
+                  ><span
+                    >Customer validation, pilots, regulatory, quality, external
+                    studies.</span
+                  >
+                </div>
+                <div>
+                  <b>20%</b
+                  ><span
+                    >Commercial readiness, partnerships, IP/legal, go-to-market
+                    assets.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="prep-card">
+              <span class="label">Allocation visual</span>
+              <h3>Replace percentages with your actual plan.</h3>
+              <p>Technical development</p>
+              <div class="bar dev"><span></span></div>
+              <p>Validation</p>
+              <div class="bar validation"><span></span></div>
+              <p>Commercialization</p>
+              <div class="bar commercial"><span></span></div>
+            </div>
+          </div>
+          <aside class="notes">
+            Make the funding ask falsifiable: "With X dollars we reach Y
+            milestone by Z date, which unlocks A customer proof and B financing
+            path."
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Question 9</span>
+            <span class="count">12-18 months</span>
+          </div>
+          <p class="question">
+            What are the next three to five critical milestones for the venture
+            over the coming 12-18 months?
+          </p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="label">0-3 mo</span>
+              <h3>Define proof</h3>
+              <p>
+                Lock requirements, success metrics, baseline, and test plan.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <span class="label">3-6 mo</span>
+              <h3>Build prototype</h3>
+              <p>
+                Retire the hardest technical uncertainty with a working system.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <span class="label">6-9 mo</span>
+              <h3>Validate user value</h3>
+              <p>
+                Run pilot or controlled study with target users and buying
+                signals.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <span class="label">9-12 mo</span>
+              <h3>Package deployment</h3>
+              <p>
+                Document integration, safety, reliability, cost, and workflow
+                fit.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <span class="label">12-18 mo</span>
+              <h3>Scale decision</h3>
+              <p>
+                Use evidence to choose raise, license, paid pilots, or first
+                sales.
+              </p>
+            </div>
+          </div>
+          <aside class="notes">
+            Each milestone should have a deliverable, owner, date range, budget
+            dependency, and success metric. Avoid vague milestones like
+            "continue development."
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Question 10</span>
+            <span class="count">affiliation</span>
+          </div>
+          <p class="question coral">
+            Are you affiliated with a university, research institution, or
+            company that may have rights or obligations tied to the technology?
+          </p>
+          <div class="two-col">
+            <div class="prep-card">
+              <span class="label">Disclosure map</span>
+              <h3>Separate facts from unresolved obligations.</h3>
+              <ul class="checklist">
+                <li>Employment, student, faculty, contractor, or lab status</li>
+                <li>
+                  Use of institution facilities, funds, data, code, or materials
+                </li>
+                <li>
+                  Invention disclosure, sponsored research, or grant terms
+                </li>
+                <li>Conflict-of-interest and conflict-of-commitment review</li>
+                <li>
+                  License path, option path, or clean-room development path
+                </li>
+              </ul>
+            </div>
+            <div class="prep-card">
+              <span class="label">Recommended answer tone</span>
+              <h3>Transparent, bounded, and action-oriented.</h3>
+              <p>
+                State known obligations, what has been disclosed, who is
+                reviewing it, and what path clears the venture to commercialize.
+              </p>
+              <div class="quote-strip">
+                "We have identified the relevant institutional rights questions
+                and are working through [office/counsel/process] before
+                executing commercial agreements."
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            This is a trust question. Do not minimize obligations. Reviewers
+            want to know that rights will not block customer pilots, financing,
+            or commercialization.
+          </aside>
+        </section>
+
+        <section data-markdown class="markdown-block">
+          <script type="text/template">
+            <div class="topline">
+            	<span class="eyebrow">Rehearsal</span>
+            	<span class="count">90 seconds</span>
+            </div>
+
+            ## One answer to practice first
+
+            ```text [1|2|3|4|5]
+            We serve [specific customer] who struggle with [costly workflow failure].
+            Our technology advances beyond [current state] by [technical mechanism].
+            We are at TRL [level], with [prototype/proof] remaining before [next gate].
+            Customer discovery shows [strongest signal], and our wedge is [market beachhead].
+            We are seeking [$] to reach [milestone], while resolving [IP/team/rights risk].
+            ```
+
+            - Cut anything that does not support customer pain, technical edge, or proof path.
+            - Keep numbers concrete even when they are estimates.
+            - End with the milestone the funding makes possible.
+          </script>
+          <aside class="notes">
+            Use this slide as the opening answer. Once this is crisp, the ten
+            detailed questions become supporting evidence rather than a
+            scramble.
+          </aside>
+        </section>
+
+        <section>
+          <div class="topline">
+            <span class="eyebrow">Readiness Check</span>
+            <span class="count">before the call</span>
+          </div>
+          <h2>Bring proof, not polish alone.</h2>
+          <div class="grid-3">
+            <div class="flash-card">
+              <h3>Three numbers</h3>
+              <p>
+                Problem cost, performance delta, and funding-to-milestone
+                amount.
+              </p>
+            </div>
+            <div class="flash-card">
+              <h3>Three artifacts</h3>
+              <p>
+                Prototype evidence, customer synthesis, and milestone budget.
+              </p>
+            </div>
+            <div class="flash-card">
+              <h3>Three risks</h3>
+              <p>
+                Technical, market, and rights/IP risk with mitigation owner.
+              </p>
+            </div>
+          </div>
+          <div class="quote-strip">
+            The strongest screening answer is specific where evidence exists and
+            explicit where proof is still being built.
+          </div>
+          <aside class="notes">
+            Final rehearsal: answer every question in under 60 seconds, then
+            prepare one deeper follow-up per question in case the screener asks
+            for detail.
+          </aside>
+        </section>
+      </div>
+    </div>
+
+    <script type="module">
+      import Reveal from "./dist/reveal.mjs";
+      import RevealHighlight from "./dist/plugin/highlight.mjs";
+      import RevealMarkdown from "./dist/plugin/markdown.mjs";
+      import RevealNotes from "./dist/plugin/notes.mjs";
+      import RevealSearch from "./dist/plugin/search.mjs";
+      import RevealZoom from "./dist/plugin/zoom.mjs";
+
+      const params = new URLSearchParams(window.location.search);
+      const config = {
+        hash: true,
+        controls: true,
+        progress: true,
+        center: true,
+        slideNumber: "c/t",
+        width: 1280,
+        height: 720,
+        margin: 0.045,
+        transition: "slide",
+        backgroundTransition: "fade",
+        pdfSeparateFragments: false,
+        previewLinks: false,
+        plugins: [
+          RevealZoom,
+          RevealNotes,
+          RevealSearch,
+          RevealMarkdown,
+          RevealHighlight,
+        ],
+      };
+
+      if (params.get("view") === "scroll") {
+        config.view = "scroll";
+        config.scrollProgress = true;
+        config.scrollSnap = "mandatory";
+      }
+
+      if (params.has("print-pdf") || params.get("notes") === "print") {
+        config.showNotes = "separate-page";
+      }
+
+      Reveal.initialize(config);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+---
+title: Export And Validation
+description: Build, validate, test, and export the deck.
+---
+
+## Build
+
+```bash
+pnpm build
+```
+
+## Rendered Reveal Validation
+
+```bash
+pnpm validate:slides
+```
+
+`pnpm validate:slides` builds the deck, starts the production preview server, captures rendered `.reveal` markup to `.tmp/rendered-validation/rendered-reveal.html`, validates that rendered markup against Reveal.js rules, and then checks the default bundle for opt-in plugin markers.
+
+## Aggregate Validation
+
+```bash
+pnpm validate
+```
+
+Use this before broad deck, plugin, docs, package, or workflow changes ship. It runs type checking, linting, shared UI unit tests, plugin preset validation, rendered slide validation, docs build, dev-server E2E, and production-preview E2E.
+
+## End-To-End Smoke Tests
+
+```bash
+pnpm test:e2e
+```
+
+The E2E suite opens the deck, checks navigation, captures console errors, and runs axe accessibility smoke tests over representative deck states.
+
+Run the same smoke suite against built output with:
+
+```bash
+pnpm test:e2e:preview
+```
+
+The preview suite catches production-only asset, minification, and public-path regressions that the dev server can hide.
+
+## PDF Export
+
+Build and start the preview server in one terminal:
+
+```bash
+pnpm build
+pnpm preview
+```
+
+Then export from another terminal while preview is running:
+
+```bash
+pnpm export:pdf
+```
+
+Use the Reveal `?print-pdf` path for manual browser exports when you do not need Decktape automation.
+
+## PowerPoint Export
+
+PowerPoint export is a documented workflow, not a package script in this repo. Choose the method by the desired trade-off:
+
+| Need                     | Workflow                                                                                 | Trade-off                                                |
+| ------------------------ | ---------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| Editable text-first deck | Write or derive `exports/<deck-slug>.md`, then run Pandoc to `exports/<deck-slug>.pptx`  | Good PowerPoint editability, limited Reveal CSS fidelity |
+| Visual fidelity          | Capture rendered slides and place them as full-slide images with PptxGenJS               | Preserves visuals, text is not editable                  |
+| Editable designed deck   | Generate native PptxGenJS text, shapes, images, and charts from structured slide data    | Highest control, requires a custom data model/script     |
+| Legacy `.ppt`            | Generate PPTX first, then convert with LibreOffice `soffice --headless --convert-to ppt` | Last-mile compatibility path, may lose fidelity          |
+
+Do not promise automatic React Reveal to editable PPTX conversion. Pandoc is best for structured Markdown sources; PptxGenJS is best when you intentionally generate native objects or image-backed slides.

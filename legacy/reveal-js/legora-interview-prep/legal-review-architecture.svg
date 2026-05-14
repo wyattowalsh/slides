@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560" role="img" aria-labelledby="title desc">
+	<title id="title">Permission-aware legal review architecture</title>
+	<desc id="desc">A legal agent workflow from intake and authorization through context, planning, typed tools, validation, lawyer approval, delivery, and eval traces.</desc>
+	<defs>
+		<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+			<path d="M0,0 L12,6 L0,12 z" fill="#2458c8" />
+		</marker>
+		<style>
+			.bg { fill: #ffffff; }
+			.node { fill: #f8fafc; stroke: #cfd7e6; stroke-width: 2; }
+			.guard { fill: #ecfdf5; stroke: #0f766e; stroke-width: 2.5; }
+			.text { fill: #111827; font: 700 22px system-ui, sans-serif; text-anchor: middle; }
+			.sub { fill: #4b5563; font: 500 14px system-ui, sans-serif; text-anchor: middle; }
+			.edge { fill: none; stroke: #2458c8; stroke-width: 3; marker-end: url(#arrow); }
+			.edge-soft { fill: none; stroke: #8aa0c2; stroke-width: 2.4; stroke-dasharray: 8 8; marker-end: url(#arrow); }
+			.label { fill: #2458c8; font: 650 13px system-ui, sans-serif; text-anchor: middle; }
+		</style>
+	</defs>
+	<rect class="bg" x="0" y="0" width="1180" height="560" rx="18" />
+	<g>
+		<path class="edge" d="M205 130 H260" />
+		<path class="edge" d="M410 130 H465" />
+		<path class="edge" d="M615 130 H670" />
+		<path class="edge" d="M820 130 H875" />
+		<path class="edge" d="M930 185 V275" />
+		<path class="edge" d="M875 330 C820 360 790 390 770 415" />
+		<path class="edge" d="M670 430 H615" />
+		<path class="edge" d="M465 430 H410" />
+		<path class="edge" d="M260 430 H205" />
+		<path class="edge-soft" d="M930 190 C930 485 220 500 170 430" />
+		<path class="edge-soft" d="M720 390 C650 510 240 505 170 430" />
+		<text class="label" x="232" y="118">files</text>
+		<text class="label" x="438" y="118">metadata</text>
+		<text class="label" x="642" y="118">allowed</text>
+		<text class="label" x="848" y="118">grounding</text>
+		<text class="label" x="950" y="250">subtasks</text>
+		<text class="label" x="842" y="390">outputs</text>
+		<text class="label" x="642" y="418">draft</text>
+		<text class="label" x="438" y="418">approved</text>
+		<text class="label" x="232" y="418">feedback</text>
+	</g>
+	<g>
+		<rect class="node" x="25" y="75" width="170" height="110" rx="10" />
+		<text class="text" x="110" y="122">Intake</text>
+		<text class="sub" x="110" y="149">Outlook / portal / DMS</text>
+		<rect class="node" x="230" y="75" width="170" height="110" rx="10" />
+		<text class="text" x="315" y="122">Normalize</text>
+		<text class="sub" x="315" y="149">parse / OCR / version</text>
+		<rect class="guard" x="435" y="75" width="170" height="110" rx="10" />
+		<text class="text" x="520" y="122">Authorize</text>
+		<text class="sub" x="520" y="149">tenant / matter / doc</text>
+		<rect class="node" x="640" y="75" width="170" height="110" rx="10" />
+		<text class="text" x="725" y="122">Context</text>
+		<text class="sub" x="725" y="149">precedent / playbooks</text>
+		<rect class="node" x="845" y="75" width="170" height="110" rx="10" />
+		<text class="text" x="930" y="122">Planner</text>
+		<text class="sub" x="930" y="149">explicit task graph</text>
+		<rect class="node" x="845" y="275" width="170" height="110" rx="10" />
+		<text class="text" x="930" y="322">Typed tools</text>
+		<text class="sub" x="930" y="349">research / compare / draft</text>
+		<rect class="guard" x="640" y="375" width="170" height="110" rx="10" />
+		<text class="text" x="725" y="422">Validate</text>
+		<text class="sub" x="725" y="449">citations / rules</text>
+		<rect class="guard" x="435" y="375" width="170" height="110" rx="10" />
+		<text class="text" x="520" y="422">Lawyer approval</text>
+		<text class="sub" x="520" y="449">review / edit / accept</text>
+		<rect class="node" x="230" y="375" width="170" height="110" rx="10" />
+		<text class="text" x="315" y="422">Delivery</text>
+		<text class="sub" x="315" y="449">Word / Outlook / DMS</text>
+		<rect class="node" x="25" y="375" width="170" height="110" rx="10" />
+		<text class="text" x="110" y="422">Trace + evals</text>
+		<text class="sub" x="110" y="449">audit / regressions</text>
+	</g>
+</svg>

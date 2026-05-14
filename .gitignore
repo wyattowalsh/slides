@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+.next/
+out/
+.source/
+coverage/
+test-results/
+test-results-*/
+playwright-report/
+playwright-report-*/
+slides.pdf
+
+# Local env and logs
+.env*
+!.env.example
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+.history/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Temporary files
+.tmp/
+*.tsbuildinfo

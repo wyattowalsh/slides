@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<title>Legora Interview Prep - reveal.js</title>
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+
+		<link rel="stylesheet" href="../dist/reset.css" />
+		<link rel="stylesheet" href="../dist/reveal.css" />
+		<link rel="stylesheet" href="../dist/theme/white.css" id="theme" />
+		<link rel="icon" href="data:," />
+
+		<style>
+			:root {
+				--paper: #f7faf8;
+				--ink: #1b2532;
+				--muted: #5a6878;
+				--line: #d7e1ea;
+				--navy: #21314c;
+				--green: #17a36b;
+				--blue: #4968d8;
+				--amber: #bd6b10;
+				--red: #bd3f3f;
+				--panel: #ffffff;
+				--shadow: 0 18px 45px rgba(24, 36, 52, 0.12);
+			}
+
+			.reveal {
+				background: var(--paper);
+				color: var(--ink);
+				font-family:
+					Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+				font-size: 25px;
+			}
+
+			.reveal .slides {
+				text-align: left;
+			}
+
+			.reveal section {
+				box-sizing: border-box;
+				min-height: 650px;
+				padding: 28px 40px;
+			}
+
+			.reveal h1,
+			.reveal h2,
+			.reveal h3,
+			.reveal h4,
+			.reveal p,
+			.reveal li {
+				letter-spacing: 0;
+			}
+
+			.reveal h1,
+			.reveal h2,
+			.reveal h3 {
+				color: var(--ink);
+				font-weight: 760;
+				text-transform: none;
+			}
+
+			.reveal h1 {
+				font-size: 58px;
+				line-height: 1.02;
+				margin: 0 0 22px 0;
+			}
+
+			.reveal h2 {
+				font-size: 42px;
+				line-height: 1.08;
+				margin: 0 0 16px 0;
+			}
+
+			.reveal h3 {
+				font-size: 25px;
+				line-height: 1.2;
+				margin: 0 0 10px 0;
+			}
+
+			.reveal p,
+			.reveal li,
+			.reveal td,
+			.reveal th {
+				font-size: 23px;
+				line-height: 1.32;
+			}
+
+			.reveal small,
+			.small {
+				color: var(--muted);
+				font-size: 16px;
+				line-height: 1.35;
+			}
+
+			.reveal ul,
+			.reveal ol {
+				margin: 0;
+				padding-left: 1.05em;
+			}
+
+			.reveal li {
+				margin: 0.24em 0;
+			}
+
+			.kicker {
+				color: var(--blue);
+				font-size: 15px;
+				font-weight: 820;
+				line-height: 1.25;
+				margin: 0 0 10px 0;
+				text-transform: uppercase;
+			}
+
+			.slide-frame {
+				display: grid;
+				grid-template-rows: auto 1fr;
+				gap: 22px;
+				height: 100%;
+			}
+
+			.slide-header {
+				align-items: start;
+				border-bottom: 1px solid var(--line);
+				display: flex;
+				gap: 24px;
+				justify-content: space-between;
+				padding-bottom: 14px;
+			}
+
+			.slide-header .meta {
+				color: var(--muted);
+				font-size: 16px;
+				line-height: 1.3;
+				max-width: 36ch;
+				text-align: right;
+			}
+
+			.title-layout {
+				align-items: stretch;
+				display: grid;
+				gap: 30px;
+				grid-template-columns: 1.05fr 0.95fr;
+				height: 100%;
+			}
+
+			.title-copy {
+				align-content: center;
+				display: grid;
+			}
+
+			.title-copy .stance {
+				border-left: 5px solid var(--green);
+				color: var(--navy);
+				font-size: 27px;
+				font-weight: 660;
+				line-height: 1.3;
+				margin-top: 20px;
+				padding-left: 18px;
+			}
+
+			.signal-board {
+				background: var(--navy);
+				color: #f7faf8;
+				display: grid;
+				gap: 14px;
+				grid-template-rows: auto 1fr;
+				min-height: 560px;
+				padding: 28px;
+			}
+
+			.signal-board h3,
+			.signal-board p {
+				color: #f7faf8;
+			}
+
+			.signal-list {
+				display: grid;
+				gap: 12px;
+			}
+
+			.signal {
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				display: grid;
+				gap: 6px;
+				grid-template-columns: 90px 1fr;
+				padding: 12px;
+			}
+
+			.signal strong {
+				color: #a8f0c6;
+				font-size: 17px;
+				line-height: 1.2;
+			}
+
+			.signal span {
+				color: #e8eef8;
+				font-size: 18px;
+				line-height: 1.24;
+			}
+
+			.band {
+				background: var(--panel);
+				border: 1px solid var(--line);
+				box-shadow: var(--shadow);
+				padding: 18px;
+			}
+
+			.grid-2,
+			.grid-3,
+			.grid-4 {
+				display: grid;
+				gap: 16px;
+			}
+
+			.grid-2 {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.grid-3 {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+
+			.grid-4 {
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+			}
+
+			.tile {
+				background: var(--panel);
+				border: 1px solid var(--line);
+				min-height: 148px;
+				padding: 16px;
+			}
+
+			.tile h3 {
+				font-size: 23px;
+			}
+
+			.tile p,
+			.tile li {
+				color: var(--muted);
+				font-size: 19px;
+			}
+
+			.tile[data-tone="green"] {
+				border-top: 5px solid var(--green);
+			}
+
+			.tile[data-tone="blue"] {
+				border-top: 5px solid var(--blue);
+			}
+
+			.tile[data-tone="amber"] {
+				border-top: 5px solid var(--amber);
+			}
+
+			.tile[data-tone="red"] {
+				border-top: 5px solid var(--red);
+			}
+
+			.callout {
+				background: #eaf7f0;
+				border-left: 6px solid var(--green);
+				color: var(--navy);
+				font-size: 27px;
+				font-weight: 650;
+				line-height: 1.26;
+				padding: 18px 20px;
+			}
+
+			.badge-row {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin-top: 12px;
+			}
+
+			.badge {
+				background: #edf2f7;
+				border: 1px solid #d8e2ec;
+				color: var(--navy);
+				display: inline-flex;
+				font-size: 15px;
+				font-weight: 750;
+				line-height: 1;
+				padding: 7px 9px;
+				text-transform: uppercase;
+			}
+
+			.quote-line {
+				color: var(--navy);
+				font-size: 30px;
+				font-weight: 700;
+				line-height: 1.25;
+				margin: 0;
+			}
+
+			.beat-list {
+				display: grid;
+				gap: 12px;
+				list-style: none;
+				padding: 0;
+			}
+
+			.beat-list li {
+				align-items: start;
+				display: grid;
+				gap: 12px;
+				grid-template-columns: 34px 1fr;
+			}
+
+			.beat-list .num {
+				align-items: center;
+				background: var(--ink);
+				color: white;
+				display: inline-flex;
+				font-size: 16px;
+				font-weight: 800;
+				height: 34px;
+				justify-content: center;
+				width: 34px;
+			}
+
+			.story-stack {
+				display: grid;
+				gap: 13px;
+			}
+
+			.story-row {
+				align-items: start;
+				background: var(--panel);
+				border: 1px solid var(--line);
+				display: grid;
+				gap: 14px;
+				grid-template-columns: 230px 1fr 1fr;
+				padding: 14px;
+			}
+
+			.story-row h3 {
+				font-size: 22px;
+			}
+
+			.story-row p,
+			.story-row li {
+				font-size: 18px;
+			}
+
+			.qa-grid {
+				display: grid;
+				gap: 15px;
+				grid-template-columns: 0.78fr 1.22fr;
+			}
+
+			.question-list {
+				display: grid;
+				gap: 10px;
+			}
+
+			.question-list div {
+				background: var(--panel);
+				border: 1px solid var(--line);
+				font-size: 18px;
+				font-weight: 710;
+				line-height: 1.24;
+				padding: 11px 13px;
+			}
+
+			.question-list span {
+				color: var(--muted);
+				display: block;
+				font-size: 14px;
+				font-weight: 760;
+				margin-bottom: 4px;
+				text-transform: uppercase;
+			}
+
+			.answer-panel {
+				background: var(--navy);
+				color: #f7faf8;
+				min-height: 482px;
+				padding: 22px;
+			}
+
+			.answer-panel h3,
+			.answer-panel p,
+			.answer-panel li {
+				color: #f7faf8;
+			}
+
+			.answer-panel .muted {
+				color: #c9d4e6;
+			}
+
+			.answer-panel li {
+				font-size: 21px;
+			}
+
+			.flow-wrap {
+				background: #ffffff;
+				border: 1px solid var(--line);
+				box-shadow: var(--shadow);
+				padding: 12px;
+			}
+
+			.flow-svg {
+				display: block;
+				height: 460px;
+				width: 100%;
+			}
+
+			.flow-node rect {
+				fill: #ffffff;
+				stroke: #7d8da5;
+				stroke-width: 2;
+			}
+
+			.flow-node text {
+				fill: var(--ink);
+				font-family:
+					Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+				font-size: 20px;
+				font-weight: 780;
+			}
+
+			.flow-node .sub {
+				fill: var(--muted);
+				font-size: 15px;
+				font-weight: 560;
+			}
+
+			.flow-edge {
+				fill: none;
+				stroke: #6f7f95;
+				stroke-width: 3;
+			}
+
+			.flow-edge-label {
+				fill: var(--muted);
+				font-size: 14px;
+				font-weight: 700;
+			}
+
+			.swimlane {
+				display: grid;
+				gap: 0;
+				grid-template-columns: 190px 1fr 1fr 1fr;
+				margin-top: 14px;
+			}
+
+			.swimlane div {
+				border: 1px solid var(--line);
+				font-size: 18px;
+				line-height: 1.24;
+				min-height: 78px;
+				padding: 12px;
+			}
+
+			.swimlane .head {
+				background: var(--navy);
+				color: white;
+				font-weight: 760;
+			}
+
+			.eval-table {
+				border-collapse: collapse;
+				width: 100%;
+			}
+
+			.eval-table th,
+			.eval-table td {
+				border: 1px solid var(--line);
+				padding: 12px;
+				vertical-align: top;
+			}
+
+			.eval-table th {
+				background: var(--navy);
+				color: white;
+				font-size: 18px;
+				font-weight: 780;
+			}
+
+			.eval-table td {
+				background: white;
+				font-size: 18px;
+			}
+
+			.close-strip {
+				align-items: stretch;
+				display: grid;
+				gap: 14px;
+				grid-template-columns: 1fr 1fr;
+			}
+
+			.close-strip .tile {
+				min-height: 84px;
+			}
+
+			.source-list {
+				display: grid;
+				gap: 8px;
+			}
+
+			.source-list a,
+			.source-list span {
+				font-size: 17px;
+				line-height: 1.2;
+			}
+
+			.source-list a {
+				color: var(--blue);
+			}
+
+			@media (max-width: 900px) {
+				.reveal {
+					font-size: 20px;
+				}
+
+				.reveal section {
+					padding: 22px;
+				}
+
+				.title-layout,
+				.grid-2,
+				.grid-3,
+				.grid-4,
+				.qa-grid,
+				.close-strip {
+					grid-template-columns: 1fr;
+				}
+
+				.story-row {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<div class="title-layout">
+						<div class="title-copy">
+							<p class="kicker">Legora - Senior Software Engineer - Hiring Manager</p>
+							<h1>Focused Interview Prep</h1>
+							<p class="stance">
+								Build the conversation around reliable systems for probabilistic legal workflows:
+								source-grounded, permission-aware, audit-ready.
+							</p>
+							<div class="badge-row">
+								<span class="badge">Wyatt Walsh</span>
+								<span class="badge">Greg Bell</span>
+								<span class="badge">May 8, 2026</span>
+								<span class="badge">45 min</span>
+							</div>
+						</div>
+
+						<div class="signal-board">
+							<div>
+								<h3>Meeting target</h3>
+								<p class="small">11:15 AM-12:00 PM EDT. Keep answers concrete and senior.</p>
+							</div>
+							<div class="signal-list">
+								<div class="signal">
+									<strong>Positioning</strong>
+									<span>Reliable AI and data systems for high-stakes expert workflows.</span>
+								</div>
+								<div class="signal">
+									<strong>Default story</strong>
+									<span>Frame Payments: agentic compliance workflow with guardrails.</span>
+								</div>
+								<div class="signal">
+									<strong>System design</strong>
+									<span>Legal review agent: permissions -> context -> tools -> validation -> approval.</span>
+								</div>
+								<div class="signal">
+									<strong>Close</strong>
+									<span>I am strongest where platform reliability and AI workflow depth meet.</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<aside class="notes">
+						Source applet meta identifies the company, role, interviewer, date, time, and stance.
+						Open with the stance, not a biography. The aim is a hiring-manager signal: platform judgment,
+						ownership, and clear tradeoffs.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Narrative spine</p>
+								<h2>Sound like a platform engineer, not an LLM enthusiast.</h2>
+							</div>
+							<p class="meta">Use these three phrases intentionally, then support them with examples.</p>
+						</div>
+
+						<div class="grid-3">
+							<div class="tile" data-tone="green">
+								<h3>Source-grounded</h3>
+								<p>Authorized sources, citation support, provenance, and traceable reasoning.</p>
+							</div>
+							<div class="tile" data-tone="blue">
+								<h3>Permission-aware</h3>
+								<p>Identity, matter, tenant, role, document ACLs, and retrieval-time filtering.</p>
+							</div>
+							<div class="tile" data-tone="amber">
+								<h3>Audit-ready</h3>
+								<p>Tool calls, file access, agent actions, user approval, eval cases, and release gates.</p>
+							</div>
+						</div>
+
+						<p class="callout">
+							Every technical answer should name a tradeoff, a failure mode, or a validation mechanism.
+						</p>
+					</div>
+					<aside class="notes">
+						The applet says: "Sound like a platform engineer, not an LLM enthusiast." It also says every
+						technical answer should include a tradeoff, failure mode, or validation mechanism. Use this
+						slide as the mental checklist before every answer.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Current Legora signals</p>
+								<h2>Map your answers to what Legora is building now.</h2>
+							</div>
+							<p class="meta">Verified from Legora pages on May 8, 2026.</p>
+						</div>
+
+						<div class="grid-3">
+							<div class="tile" data-tone="green">
+								<h3>aOS launch</h3>
+								<p>
+									May 7, 2026: Legora framed aOS as an agentic operating system for end-to-end legal
+									work across intake, research, drafting, review, and delivery.
+								</p>
+							</div>
+							<div class="tile" data-tone="blue">
+								<h3>Walter acquisition</h3>
+								<p>
+									Walter brings agent-native workflows across Outlook intake, DMS research,
+									multi-document editing, blacklining, and client replies.
+								</p>
+							</div>
+							<div class="tile" data-tone="amber">
+								<h3>NY engineering hub</h3>
+								<p>
+									Legora is scaling New York into a central product and engineering hub for enterprise
+									legal workflows.
+								</p>
+							</div>
+							<div class="tile" data-tone="green">
+								<h3>Graceview</h3>
+								<p>
+									Regulatory monitoring adds real-time coverage across tens of thousands of official
+									sources and 100+ jurisdictions.
+								</p>
+							</div>
+							<div class="tile" data-tone="blue">
+								<h3>Qura</h3>
+								<p>
+									AI-native legal research strengthens the knowledge layer and emphasizes structured
+									legal data over shallow retrieval alone.
+								</p>
+							</div>
+							<div class="tile" data-tone="red">
+								<h3>Security vocabulary</h3>
+								<p>
+									Zero Trust, Zanzibar-style authorization, no foundation-model training on customer
+									data, support approval, and audit trails.
+								</p>
+							</div>
+						</div>
+					</div>
+					<aside class="notes">
+						Do not overdo company-news recitation. Use these facts to make the conversation concrete:
+						"That maps to the aOS direction because..." and "Greg's Walter/S3 background makes reliability
+						and infrastructure a natural area to discuss." Sources: Legora newsroom and security pages.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">60-second pitch</p>
+								<h2>Lead with systems, then domain fit.</h2>
+							</div>
+							<p class="meta">Target: under one minute. Do not improvise the first answer.</p>
+						</div>
+
+						<div class="grid-2">
+							<div class="band">
+								<p class="quote-line">
+									I build production systems around probabilistic components in high-stakes
+									environments.
+								</p>
+								<p>
+									My fit for Legora is strongest around agentic legal work: permission-aware context,
+									structured validation, observability, and integrations that make expert users faster
+									without hiding risk.
+								</p>
+							</div>
+							<div class="band">
+								<ol class="beat-list">
+									<li><span class="num">1</span><span>Production systems around probabilistic components.</span></li>
+									<li><span class="num">2</span><span>AI workflows plus data infrastructure plus platform reliability.</span></li>
+									<li><span class="num">3</span><span>Legal work demands trust and deep workflow fit.</span></li>
+									<li><span class="num">4</span><span>Ownership, tradeoff clarity, and observable systems.</span></li>
+								</ol>
+							</div>
+						</div>
+					</div>
+					<aside class="notes">
+						Applet pitch says the product is not just a generic assistant; it is moving toward an operating
+						system for legal work. Avoid market hype. Connect the sentence to your systems track record.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Story routing</p>
+								<h2>Pick the story based on the signal they ask for.</h2>
+							</div>
+							<p class="meta">Keep metrics conservative unless you have verified them.</p>
+						</div>
+
+						<div class="story-stack">
+							<div class="story-row">
+								<div>
+									<h3>Frame Payments</h3>
+									<p class="small">AI systems, ownership, document workflows, guardrails</p>
+								</div>
+								<ul>
+									<li>Structured extraction, validation, and explicit failure states.</li>
+									<li>Human escalation for ambiguous or high-risk cases.</li>
+								</ul>
+								<p>
+									Legora map: document complexity, high-trust output, auditability, expert review, and
+									workflow compression.
+								</p>
+							</div>
+							<div class="story-row">
+								<div>
+									<h3>JPMorgan</h3>
+									<p class="small">Reliability, regulated systems, observability, enterprise users</p>
+								</div>
+								<ul>
+									<li>Clear interfaces and dependable data infrastructure.</li>
+									<li>Tradeoffs across latency, isolation, maintainability, and observability.</li>
+								</ul>
+								<p>
+									Legora map: enterprise readiness and credibility with demanding expert users.
+								</p>
+							</div>
+							<div class="story-row">
+								<div>
+									<h3>Startup mode</h3>
+									<p class="small">Ambiguity, autonomy, product engineering, execution</p>
+								</div>
+								<ul>
+									<li>Thin vertical slices around user outcomes.</li>
+									<li>Lightweight quality bars: tests, logs, deployments, user feedback.</li>
+								</ul>
+								<p>
+									Legora map: fast-growing engineering hub that needs judgment and culture-setting
+									seniority.
+								</p>
+							</div>
+						</div>
+					</div>
+					<aside class="notes">
+						The source applet marks story results as user-confirm. Do not claim exact numbers unless verified.
+						For Frame Payments, if the metric is not confirmed, say "materially reduced repeated follow-up
+						loops" rather than a numeric claim.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Default STAR answer</p>
+								<h2>Frame Payments: the system did the work, not the prompt.</h2>
+							</div>
+							<p class="meta">Best for AI systems, ownership, document intelligence, and guardrails.</p>
+						</div>
+
+						<div class="grid-4">
+							<div class="tile" data-tone="green">
+								<h3>Situation</h3>
+								<p>Compliance-heavy workflow created repeated analyst follow-ups and document back-and-forth.</p>
+							</div>
+							<div class="tile" data-tone="blue">
+								<h3>Task</h3>
+								<p>Reduce rework while preserving traceability, validation, and human control.</p>
+							</div>
+							<div class="tile" data-tone="amber">
+								<h3>Actions</h3>
+								<p>Structured extraction, schemas, deterministic post-checks, inspectable failures, escalation paths.</p>
+							</div>
+							<div class="tile" data-tone="red">
+								<h3>Result</h3>
+								<p>Use only verified numbers live. Otherwise say it reduced repeated follow-up loops.</p>
+							</div>
+						</div>
+
+						<p class="callout">
+							Strong version: "I treated model output as one component inside a larger control system."
+						</p>
+					</div>
+					<aside class="notes">
+						Answer shape: problem, constraints, architecture, validation, impact. Make the model a component,
+						not the hero. Mention explicit failure states and human-in-the-loop escalation.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Question drills</p>
+								<h2>Motivation and ownership answers need a bridge.</h2>
+							</div>
+							<p class="meta">Start with the direct answer. Then bridge to evidence.</p>
+						</div>
+
+						<div class="qa-grid">
+							<div class="question-list">
+								<div><span>Motivation</span>Why Legora and why this role?</div>
+								<div><span>Experience</span>Tell me about a system you owned end-to-end.</div>
+								<div><span>Systems</span>Walk me through an architecture tradeoff.</div>
+								<div><span>Execution</span>How do you handle ambiguous requirements?</div>
+							</div>
+							<div class="answer-panel">
+								<h3>Answer pattern</h3>
+								<ul>
+									<li>Legal AI is valuable only when the surrounding system is trustworthy.</li>
+									<li>Use Frame Payments for ownership: constraints, architecture, validation, rollout, impact.</li>
+									<li>Name the rejected alternative in every tradeoff answer.</li>
+									<li>Turn ambiguity into one measured slice: user outcome, non-goal, risk boundary, baseline.</li>
+								</ul>
+								<p class="muted">
+									Watchout: do not answer with market hype, implementation sprawl, or "we will improve
+									the prompt."
+								</p>
+							</div>
+						</div>
+					</div>
+					<aside class="notes">
+						Bridge line for motivation: compliance/document workflows plus regulated enterprise reliability.
+						Tradeoff examples from applet: schema rigidity versus flexibility, sync UX versus async
+						processing, fast model iteration versus stable evals, generalized agent tools versus narrow
+						deterministic tools.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">AI reliability</p>
+								<h2>Treat model output as untrusted until validated.</h2>
+							</div>
+							<p class="meta">This is the strongest answer family for Legora.</p>
+						</div>
+
+						<div class="grid-3">
+							<div class="tile" data-tone="green">
+								<h3>Hallucination control</h3>
+								<ul>
+									<li>Authorized retrieval.</li>
+									<li>Typed outputs and schemas.</li>
+									<li>Citation and rule validation.</li>
+									<li>Escalation for sensitive actions.</li>
+								</ul>
+							</div>
+							<div class="tile" data-tone="blue">
+								<h3>Unsupported claim debug</h3>
+								<ul>
+									<li>Trace user request and sources.</li>
+									<li>Check permissions and ranking.</li>
+									<li>Classify failure mode.</li>
+									<li>Promote to regression eval.</li>
+								</ul>
+							</div>
+							<div class="tile" data-tone="amber">
+								<h3>When not to use autonomy</h3>
+								<ul>
+									<li>High legal or reputational risk.</li>
+									<li>Weak ground truth.</li>
+									<li>Unclear permissions.</li>
+									<li>Low repeatability.</li>
+								</ul>
+							</div>
+						</div>
+
+						<p class="callout">
+							The highest-leverage controls are often outside the prompt: retrieval filters, typed tools,
+							post-checks, traces, and eval gates.
+						</p>
+					</div>
+					<aside class="notes">
+						The applet's stronger line is that a better model does not eliminate the problem. Mention that
+						reliability is product behavior: inspectable reasoning and safe handoff paths for lawyers.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Platform depth</p>
+								<h2>Permission leakage: authorize before retrieval.</h2>
+							</div>
+							<p class="meta">Make this answer crisp. It is directly relevant to legal work.</p>
+						</div>
+
+						<div class="grid-2">
+							<div class="band">
+								<h3>Core answer</h3>
+								<ul>
+									<li>Normalize identity, tenant, matter, role, and document ACLs.</li>
+									<li>Enforce filters in both keyword and vector retrieval.</li>
+									<li>Use synthetic cross-matter fixtures for testing.</li>
+									<li>Log every source access for auditability.</li>
+								</ul>
+							</div>
+							<div class="band">
+								<h3>Integration answer</h3>
+								<ul>
+									<li>Center the domain model on the matter and document bundle.</li>
+									<li>Keep adapters at the edges: Word, Outlook, DMS, matter systems.</li>
+									<li>Use idempotent writes, retries, and explicit side-effect boundaries.</li>
+									<li>Preserve a testable, auditable core workflow engine.</li>
+								</ul>
+							</div>
+						</div>
+
+						<p class="callout">The model should never see text the user is not authorized to see.</p>
+					</div>
+					<aside class="notes">
+						Legora's security page uses Zero Trust and Zanzibar-style authorization vocabulary. This slide
+						turns that vocabulary into an engineering answer. Do not treat permissions as a UI-only problem.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">System design prompt</p>
+								<h2>Agentic legal review workflow.</h2>
+							</div>
+							<p class="meta">Start permission-aware. Do not start with an autonomous black box.</p>
+						</div>
+
+						<div class="grid-2">
+							<div class="band">
+								<h3>Prompt</h3>
+								<p>
+									A lawyer receives a contract redline or client request. Design a system that reviews
+									changes against matter context, firm playbooks, precedent, and authoritative sources;
+									proposes a response; and routes it for lawyer approval before delivery.
+								</p>
+							</div>
+							<div class="band">
+								<h3>Walkthrough</h3>
+								<ol>
+									<li>Clarify inputs, outputs, risk boundary, and approval gates.</li>
+									<li>Normalize documents into a canonical matter bundle.</li>
+									<li>Authorize before retrieval.</li>
+									<li>Plan explicit subtasks and use typed tools.</li>
+									<li>Validate citations, schemas, rules, and confidence.</li>
+									<li>Capture traces and corrections as eval cases.</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+					<aside class="notes">
+						The applet's verbal walkthrough: normalize matter bundle, authorize before retrieval, retrieve
+						source-grounded context, plan explicit subtasks, use typed tools, validate outputs, route
+						sensitive delivery through lawyer approval, and turn traces into audit records and eval cases.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Architecture map</p>
+								<h2>Legal review agent: visible control boundaries.</h2>
+							</div>
+							<p class="meta">Use this order under pressure.</p>
+						</div>
+
+						<div class="flow-wrap">
+							<svg class="flow-svg" viewBox="0 0 1180 560" role="img" aria-labelledby="flow-title flow-desc">
+								<title id="flow-title">Agentic legal review workflow architecture</title>
+								<desc id="flow-desc">
+									Intake flows through normalization, authorization, context retrieval, planning, typed
+									tools, validation, lawyer approval, delivery, and trace plus evals.
+								</desc>
+								<defs>
+									<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+										<path d="M 0 0 L 10 5 L 0 10 z" fill="#6f7f95"></path>
+									</marker>
+								</defs>
+								<path class="flow-edge" marker-end="url(#arrow)" d="M190 150 H267"></path>
+								<path class="flow-edge" marker-end="url(#arrow)" d="M395 150 H472"></path>
+								<path class="flow-edge" marker-end="url(#arrow)" d="M600 150 H677"></path>
+								<path class="flow-edge" marker-end="url(#arrow)" d="M805 150 H882"></path>
+								<path class="flow-edge" marker-end="url(#arrow)" d="M970 180 V292"></path>
+								<path class="flow-edge" marker-end="url(#arrow)" d="M890 360 C840 390 815 420 805 450"></path>
+								<path class="flow-edge" marker-end="url(#arrow)" d="M677 450 H600"></path>
+								<path class="flow-edge" marker-end="url(#arrow)" d="M472 450 H395"></path>
+								<path class="flow-edge" marker-end="url(#arrow)" d="M267 450 H190"></path>
+								<path class="flow-edge" marker-end="url(#arrow)" d="M930 185 C820 245 415 318 175 420"></path>
+								<path class="flow-edge" marker-end="url(#arrow)" d="M725 482 H190"></path>
+
+								<text class="flow-edge-label" x="212" y="136">files</text>
+								<text class="flow-edge-label" x="414" y="136">metadata</text>
+								<text class="flow-edge-label" x="625" y="136">allowed</text>
+								<text class="flow-edge-label" x="824" y="136">grounding</text>
+								<text class="flow-edge-label" x="982" y="245">subtasks</text>
+								<text class="flow-edge-label" x="828" y="405">outputs</text>
+								<text class="flow-edge-label" x="617" y="436">draft</text>
+								<text class="flow-edge-label" x="413" y="436">approved</text>
+
+								<g class="flow-node" transform="translate(70 100)">
+									<rect width="120" height="100"></rect>
+									<text x="60" y="43" text-anchor="middle">Intake</text>
+									<text class="sub" x="60" y="68" text-anchor="middle">Outlook / portal</text>
+								</g>
+								<g class="flow-node" transform="translate(275 100)">
+									<rect width="120" height="100"></rect>
+									<text x="60" y="43" text-anchor="middle">Normalize</text>
+									<text class="sub" x="60" y="68" text-anchor="middle">parse / version</text>
+								</g>
+								<g class="flow-node" transform="translate(480 100)">
+									<rect width="120" height="100"></rect>
+									<text x="60" y="43" text-anchor="middle">Authorize</text>
+									<text class="sub" x="60" y="68" text-anchor="middle">tenant / matter</text>
+								</g>
+								<g class="flow-node" transform="translate(685 100)">
+									<rect width="120" height="100"></rect>
+									<text x="60" y="43" text-anchor="middle">Context</text>
+									<text class="sub" x="60" y="68" text-anchor="middle">precedent</text>
+								</g>
+								<g class="flow-node" transform="translate(890 100)">
+									<rect width="120" height="100"></rect>
+									<text x="60" y="43" text-anchor="middle">Planner</text>
+									<text class="sub" x="60" y="68" text-anchor="middle">task graph</text>
+								</g>
+								<g class="flow-node" transform="translate(890 300)">
+									<rect width="120" height="100"></rect>
+									<text x="60" y="43" text-anchor="middle">Typed tools</text>
+									<text class="sub" x="60" y="68" text-anchor="middle">research / draft</text>
+								</g>
+								<g class="flow-node" transform="translate(685 400)">
+									<rect width="120" height="100"></rect>
+									<text x="60" y="43" text-anchor="middle">Validate</text>
+									<text class="sub" x="60" y="68" text-anchor="middle">citations / rules</text>
+								</g>
+								<g class="flow-node" transform="translate(480 400)">
+									<rect width="120" height="100"></rect>
+									<text x="60" y="43" text-anchor="middle">Approval</text>
+									<text class="sub" x="60" y="68" text-anchor="middle">lawyer review</text>
+								</g>
+								<g class="flow-node" transform="translate(275 400)">
+									<rect width="120" height="100"></rect>
+									<text x="60" y="43" text-anchor="middle">Delivery</text>
+									<text class="sub" x="60" y="68" text-anchor="middle">Word / DMS</text>
+								</g>
+								<g class="flow-node" transform="translate(70 400)">
+									<rect width="120" height="100"></rect>
+									<text x="60" y="43" text-anchor="middle">Trace + evals</text>
+									<text class="sub" x="60" y="68" text-anchor="middle">audit / gates</text>
+								</g>
+							</svg>
+						</div>
+					</div>
+					<aside class="notes">
+						Node notes from applet: intake starts with matter request and bundle; normalize files, metadata,
+						versions, and citations; authorization is a precondition to retrieval and generation; context is
+						source-grounded and permission-allowed; planner must stay inspectable; tools are narrow and typed;
+						validate before lawyer view; approval is the safety boundary; delivery returns to existing
+						workflow; traces feed auditability, debugging, and regression evals.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Risk and evaluation</p>
+								<h2>Use senior language: threat model, evals, release gates.</h2>
+							</div>
+							<p class="meta">This is where the answer becomes production-grade.</p>
+						</div>
+
+						<div class="grid-2">
+							<div class="band">
+								<h3>Failure modes</h3>
+								<ul>
+									<li>Retrieval leakage across matters or tenants.</li>
+									<li>Citations that do not support generated claims.</li>
+									<li>Silent truncation or missed document versions.</li>
+									<li>Partial failure after external integration writes.</li>
+									<li>Overconfident output when sources conflict.</li>
+								</ul>
+							</div>
+							<div class="band">
+								<h3>Threat model</h3>
+								<ul>
+									<li>Prompt injection from documents or emails.</li>
+									<li>Sensitive information disclosure.</li>
+									<li>Excessive agency without approval.</li>
+									<li>Unsupported claim appears client-ready.</li>
+									<li>Unbounded cost or latency from large bundles.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<aside class="notes">
+						Tradeoffs from applet: async processing helps large document reliability but needs status UX and
+						resumable jobs; narrow tools reduce blast radius and improve evals but require more orchestration;
+						conservative approval gates slow full automation but fit legal trust-building.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Release gates</p>
+								<h2>Eval matrix for legal-agent work.</h2>
+							</div>
+							<p class="meta">Say what you would measure before saying what you would ship.</p>
+						</div>
+
+						<table class="eval-table">
+							<thead>
+								<tr>
+									<th>Target</th>
+									<th>Grader</th>
+									<th>Dataset</th>
+									<th>Gate</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Permission leakage</td>
+									<td>Deterministic ACL fixture</td>
+									<td>Synthetic cross-matter tasks</td>
+									<td>100% pass</td>
+								</tr>
+								<tr>
+									<td>Citation support</td>
+									<td>Source-span verifier plus expert sample</td>
+									<td>Lawyer-reviewed examples</td>
+									<td>Above release threshold</td>
+								</tr>
+								<tr>
+									<td>Review burden</td>
+									<td>Edit distance plus lawyer rating</td>
+									<td>Real workflow sample</td>
+									<td>Trend down</td>
+								</tr>
+								<tr>
+									<td>Completion quality</td>
+									<td>Outcome-state check</td>
+									<td>Simulated matter tasks</td>
+									<td>Meets workflow SLA</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<aside class="notes">
+						Additional evals from applet: citation-support accuracy, permission-filter correctness,
+						redline issue recall and precision, lawyer edit distance / review burden, successful completion
+						rate and escalation quality.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Smart questions</p>
+								<h2>Ask questions that reveal platform bottlenecks.</h2>
+							</div>
+							<p class="meta">Choose at least two. Do not run the whole list.</p>
+						</div>
+
+						<div class="grid-2">
+							<div class="tile" data-tone="green">
+								<h3>Immediate leverage</h3>
+								<p>
+									For the NYC engineering hub, what first platform or product bottlenecks do you want
+									senior engineers to remove?
+								</p>
+							</div>
+							<div class="tile" data-tone="blue">
+								<h3>Ownership split</h3>
+								<p>
+									How is ownership split across agent runtime, integrations, retrieval, product
+									surfaces, and infrastructure?
+								</p>
+							</div>
+							<div class="tile" data-tone="amber">
+								<h3>Quality metric</h3>
+								<p>
+									What defines a high-quality agentic workflow: accuracy, latency, lawyer adoption,
+									review burden, completion rate, or another metric?
+								</p>
+							</div>
+							<div class="tile" data-tone="red">
+								<h3>Hard reliability</h3>
+								<p>
+									Where are the hardest reliability problems right now: permissions, long-running
+									workflows, model variability, integrations, document scale, or evals?
+								</p>
+							</div>
+						</div>
+					</div>
+					<aside class="notes">
+						The applet also includes: "What would a great first 90 days look like for this role?" Use it late,
+						after technical discussion, to close against their needs.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Answer guardrails</p>
+								<h2>Avoid these traps.</h2>
+							</div>
+							<p class="meta">Replace weak AI talk with workflow and validation language.</p>
+						</div>
+
+						<div class="swimlane">
+							<div class="head">Risky wording</div>
+							<div class="head">Better wording</div>
+							<div class="head">Why it works</div>
+							<div class="head">Use when</div>
+
+							<div>"Just use an LLM to summarize."</div>
+							<div>Define risk boundary, retrieve filtered context, validate citations, route to approval.</div>
+							<div>Shows legal workflow control.</div>
+							<div>Design or AI reliability</div>
+
+							<div>"Better prompting should fix it."</div>
+							<div>Reliability comes from grounding, typed outputs, post-checks, traces, evals, escalation.</div>
+							<div>Keeps model quality in system context.</div>
+							<div>Hallucination questions</div>
+
+							<div>"Automate the whole thing immediately."</div>
+							<div>Start with conservative autonomy, measure review burden, expand when evals support it.</div>
+							<div>Signals judgment around risk.</div>
+							<div>Agent autonomy questions</div>
+						</div>
+					</div>
+					<aside class="notes">
+						Guidance from applet: name the risk boundary before naming the model; every system answer needs a
+						failure mode; prefer eval language over vibes; use tool names sparingly; start with workflow and
+						expand to agency only when justified; turn incidents into evals.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Last-mile checklist</p>
+								<h2>Final run of show.</h2>
+							</div>
+							<p class="meta">Keep it focused in a 45-minute hiring-manager screen.</p>
+						</div>
+
+						<div class="close-strip">
+							<div class="tile" data-tone="green">
+								<h3>Before the call</h3>
+								<ul>
+									<li>Verify every user-specific metric.</li>
+									<li>Practice the pitch under one minute.</li>
+									<li>Memorize the legal-review architecture sequence.</li>
+								</ul>
+							</div>
+							<div class="tile" data-tone="blue">
+								<h3>During the call</h3>
+								<ul>
+									<li>Use Frame Payments as the default ownership story.</li>
+									<li>Use JPMorgan for enterprise reliability.</li>
+									<li>Use startup mode for ambiguity and speed.</li>
+								</ul>
+							</div>
+							<div class="tile" data-tone="amber">
+								<h3>When technical</h3>
+								<ul>
+									<li>State the tradeoff.</li>
+									<li>Name the failure mode.</li>
+									<li>Define the validation or eval.</li>
+								</ul>
+							</div>
+							<div class="tile" data-tone="red">
+								<h3>Close</h3>
+								<ul>
+									<li>Ask about the first 90 days.</li>
+									<li>Reflect their bottleneck back.</li>
+									<li>Close on systems reliability plus AI workflow depth.</li>
+								</ul>
+							</div>
+						</div>
+
+						<p class="callout">Closing line: "I am strongest where systems reliability and AI workflow depth have to meet."</p>
+					</div>
+					<aside class="notes">
+						The source one-pager says: lead with end-to-end ownership, trust-aware AI systems, and platform
+						rigor. Avoid generic AI enthusiasm, model-only answers, and unverifiable metrics.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Known gaps</p>
+								<h2>Do not overclaim.</h2>
+							</div>
+							<p class="meta">These are visible gaps from the source applet.</p>
+						</div>
+
+						<div class="grid-3">
+							<div class="tile" data-tone="red">
+								<h3>User metrics</h3>
+								<p>
+									Frame Payments, JPMorgan, and startup outcomes are marked as user-confirm. Use
+									qualitative phrasing unless exact numbers are verified.
+								</p>
+							</div>
+							<div class="tile" data-tone="amber">
+								<h3>Interviewer context</h3>
+								<p>
+									Greg Bell's infrastructure background is source-backed, but the exact interview focus is
+									not. Let his questions lead.
+								</p>
+							</div>
+							<div class="tile" data-tone="blue">
+								<h3>Product assumptions</h3>
+								<p>
+									Use official Legora facts, but avoid pretending to know internal architecture, team
+									boundaries, or roadmap priorities.
+								</p>
+							</div>
+						</div>
+					</div>
+					<aside class="notes">
+						This slide is a private guardrail. It may not need to be presented. Keep it in the deck so the
+						speaker notes are honest about what came from source data versus inference.
+					</aside>
+				</section>
+
+				<section>
+					<div class="slide-frame">
+						<div class="slide-header">
+							<div>
+								<p class="kicker">Source notes</p>
+								<h2>Factual anchors used in this deck.</h2>
+							</div>
+							<p class="meta">Local applet plus official Legora pages checked May 8, 2026.</p>
+						</div>
+
+						<div class="source-list">
+							<span>Local source: /Users/ww/Downloads/legora_interview_prep_applet.html</span>
+							<a href="https://legora.com/newsroom/legora-introduces-the-legora-aos-the-agentic-operating-system-for-legal-work">Legora aOS launch - May 7, 2026</a>
+							<a href="https://legora.com/newsroom/legora-acquires-walter-ai-to-expand-its-agentic-platform-for-legal-teams">Walter AI acquisition - Mar 11, 2026</a>
+							<a href="https://legora.com/newsroom/legora-acquires-graceview-to-bring-real-time-regulatory-intelligence-to-legal-compliance-and-risk-teams">Graceview acquisition - May 6, 2026</a>
+							<a href="https://legora.com/newsroom/legora-acquires-qura-to-build-the-world%E2%80%99s-leading-ai-native-legal-research-platform">Qura acquisition - Apr 23, 2026</a>
+							<a href="https://legora.com/security">Legora security and compliance</a>
+							<a href="https://legora.com/product/aos">Legora aOS product page</a>
+							<a href="https://legora.com/newsroom/legora-expands-north-american-footprint-with-san-francisco-and-toronto-offices-new-york-engineering-hub">North America expansion and New York engineering hub - Apr 15, 2026</a>
+						</div>
+					</div>
+					<aside class="notes">
+						Use this slide only if asked about source provenance. The source applet supplied the interview
+						metadata, pitch, stories, question bank, system design drill, guidance, and caveats. Web checks
+						were used to confirm current Legora facts.
+					</aside>
+				</section>
+			</div>
+		</div>
+
+		<script type="module">
+			import Reveal from "../dist/reveal.mjs";
+			import RevealNotes from "../dist/plugin/notes.mjs";
+			import RevealSearch from "../dist/plugin/search.mjs";
+			import RevealZoom from "../dist/plugin/zoom.mjs";
+
+			Reveal.initialize({
+				hash: true,
+				controls: true,
+				progress: true,
+				center: false,
+				slideNumber: "c/t",
+				width: 1280,
+				height: 720,
+				margin: 0.04,
+				pdfSeparateFragments: false,
+				plugins: [RevealNotes, RevealSearch, RevealZoom],
+			});
+		</script>
+	</body>
+</html>

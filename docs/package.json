@@ -1,0 +1,30 @@
+{
+	"name": "@slides/docs",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "next dev -p 3000",
+		"build": "next build",
+		"start": "next start -p 3000",
+		"typecheck": "fumadocs-mdx && tsc -p tsconfig.json --noEmit"
+	},
+	"dependencies": {
+		"@workspace/ui": "workspace:*",
+		"fumadocs-core": "16.8.8",
+		"fumadocs-mdx": "15.0.0",
+		"fumadocs-ui": "16.8.8",
+		"next": "16.2.6",
+		"react": "19.2.6",
+		"react-dom": "19.2.6",
+		"tailwindcss": "4.3.0"
+	},
+	"devDependencies": {
+		"@tailwindcss/postcss": "4.3.0",
+		"@types/mdx": "2.0.13",
+		"@types/node": "24.10.1",
+		"@types/react": "19.2.7",
+		"@types/react-dom": "19.2.3",
+		"typescript": "5.9.3"
+	}
+}

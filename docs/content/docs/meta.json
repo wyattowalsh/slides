@@ -1,0 +1,10 @@
+{
+	"title": "Slides Workspace",
+	"pages": [
+		"index",
+		"getting-started",
+		"authoring-slides",
+		"reveal-plugins",
+		"export-and-validation"
+	]
+}

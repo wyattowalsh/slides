@@ -1,0 +1,290 @@
+{
+	"schemaVersion": 1,
+	"meta": {
+		"title": "Legora Interview Prep Deck",
+		"subtitle": "Reliable systems around probabilistic components",
+		"updated": "2026-05-08",
+		"interview": "Greg Bell, Hiring Manager, May 8, 2026, 11:15 AM-12:00 PM EDT"
+	},
+	"slides": [
+		{
+			"id": "stance",
+			"menuTitle": "Interview stance",
+			"html": [
+				"<p class=\"eyebrow\">Legora / Senior Software Engineer / Hiring Manager</p>",
+				"<h1 class=\"r-fit-text\">Reliable systems around probabilistic components</h1>",
+				"<p class=\"lede\">Use this deck to rehearse platform judgment, end-to-end ownership, and trust-aware agent design for the May 8, 2026 interview with Greg Bell.</p>",
+				"<div class=\"fact-row\"><span>45 minutes</span><span>Engineering HM</span><span>11:15 AM-12:00 PM EDT</span><span>New York engineering hub</span></div>"
+			],
+			"notes": [
+				"Open with the stance, not generic AI enthusiasm.",
+				"Core claim: reliable AI systems need permissions, validation, observability, and workflow fit."
+			]
+		},
+		{
+			"id": "why-legora",
+			"menuTitle": "Why Legora",
+			"sourceIds": ["legora_jobs_sse_ny", "legora_aos"],
+			"html": [
+				"<h2>Why Legora, why this role</h2>",
+				"<div class=\"two-col\"><div><h3>Positioning</h3><p>I build reliable AI and data systems for high-stakes workflows. Legal AI is compelling because the model is only one component: the surrounding platform has to be source-grounded, permission-aware, auditable, and useful inside expert work.</p></div><div><h3>Bridge</h3><ul class=\"tight\"><li>Frame Payments: document workflow, guardrails, human review.</li><li>JPMorgan: regulated enterprise reliability and observability.</li><li>Startup mode: ambiguity to shipped vertical slices.</li></ul></div></div>",
+				"<p class=\"answer-line\">Thesis: Legora's current product direction rewards engineers who can turn agent demos into dependable workflows.</p>"
+			],
+			"notes": [
+				"Avoid market hype. Make the answer about trustworthy systems around expert users.",
+				"Use the phrase: not demo-first prompting, but workflow-first systems engineering."
+			]
+		},
+		{
+			"id": "current-signals",
+			"menuTitle": "Current Legora signals",
+			"sourceIds": ["legora_newsroom", "legora_aos", "legora_graceview", "legora_everlaw", "legora_qura"],
+			"html": [
+				"<h2>Current Legora signals</h2>",
+				"<div class=\"signal-grid\"><article class=\"signal-card fragment\"><h3>aOS launch</h3><p>Single connected system for matter intake, research, drafting, review, and client delivery.</p><span>May 7, 2026</span></article><article class=\"signal-card fragment\"><h3>Graceview</h3><p>Real-time regulatory intelligence over official sources across 100+ jurisdictions.</p><span>May 6, 2026</span></article><article class=\"signal-card fragment\"><h3>Everlaw</h3><p>Litigation workflow integration grounded in verified case evidence and preserved permissions.</p><span>May 4, 2026</span></article><article class=\"signal-card fragment\"><h3>Qura</h3><p>AI-native legal research as a traceable data layer, beyond shallow retrieval.</p><span>Apr 23, 2026</span></article></div>",
+				"<p class=\"caption\">Use these as technical anchors: end-to-end workflow, verified evidence, structured legal data, real-time regulatory context.</p>"
+			],
+			"notes": [
+				"These signals are more useful than general company facts.",
+				"If Greg asks why Legora now, connect the releases to operating-system scope and integration depth."
+			]
+		},
+		{
+			"id": "scale-trust",
+			"menuTitle": "Scale and trust",
+			"sourceIds": ["legora_arr", "legora_series_d_extension", "legora_security"],
+			"html": [
+				"<h2>Scale and trust posture</h2>",
+				"<div class=\"metric-grid\"><div><strong>$100M+ ARR</strong><span>reported Apr 2, 2026</span></div><div><strong>1,000+ customers</strong><span>law firms and in-house teams</span></div><div><strong>$600M Series D</strong><span>$5.6B post-money valuation after extension</span></div><div><strong>400 employees</strong><span>from 40 over the past year</span></div></div>",
+				"<pre class=\"r-stretch\"><code class=\"language-json\" data-trim>{\n  \"security_frame\": {\n    \"authorize\": \"before retrieval\",\n    \"isolate\": [\"tenant\", \"matter\", \"document_acl\"],\n    \"trace\": [\"source_data\", \"prompt\", \"tool_call\", \"agent_action\"],\n    \"approval\": \"lawyer for client-facing output\"\n  }\n}</code></pre>"
+			],
+			"notes": [
+				"The security page supports the vocabulary: ISO 42001, ISO 27001, SOC 2 Type II, GDPR, Zero Trust, Zanzibar-style access control, and traceability to source data and prompts.",
+				"Make scale a reliability argument, not a brag."
+			]
+		},
+		{
+			"id": "sota-agent-patterns",
+			"menuTitle": "SOTA agent patterns",
+			"sourceIds": ["anthropic_effective_agents", "openai_agent_guardrails", "openai_agent_tracing"],
+			"html": [
+				"<h2>SOTA pattern map for legal agents</h2>",
+				"<div class=\"pattern-grid\"><article><h3>Workflow first</h3><p>Use predictable workflows when the path is known: intake, classify, retrieve, draft, validate, approve.</p></article><article><h3>Agents where useful</h3><p>Use planner-worker behavior only when the work requires dynamic decomposition or tool choice.</p></article><article><h3>Guardrail each boundary</h3><p>Validate inputs, tool calls, outputs, citations, action permissions, and escalation state.</p></article><article><h3>Trace everything</h3><p>Keep a run record for prompts, retrieved sources, tool calls, handoffs, guardrails, and human edits.</p></article></div>",
+				"<p class=\"answer-line\">Interview phrasing: I would start deterministic, add agent autonomy only where it buys workflow coverage, and keep every model step inspectable.</p>"
+			],
+			"notes": [
+				"This slide aligns with Anthropic's workflows-versus-agents framing and OpenAI's guardrails/tracing emphasis.",
+				"Use it to answer architecture questions without sounding framework-dependent."
+			]
+		},
+		{
+			"id": "pitch",
+			"menuTitle": "60-second pitch",
+			"html": [
+				"<h2>60-second pitch</h2>",
+				"<div class=\"pitch-block r-frame\"><p>I build production systems around probabilistic components in high-stakes environments.</p><p>My strongest work sits at the intersection of AI workflows, data-intensive systems, and platform reliability.</p><p>What makes Legora compelling is that the product is moving toward an operating system for legal work, where trust, deep integrations, and end-to-end workflow execution matter.</p></div>"
+			],
+			"notes": [
+				"Keep this under a minute.",
+				"Land on ownership, tradeoff clarity, observable systems, and expert workflows."
+			]
+		},
+		{
+			"id": "story-chooser",
+			"menuTitle": "Story chooser",
+			"html": [
+				"<h2>Choose the story by signal</h2>",
+				"<div class=\"story-grid\"><article class=\"story-card\"><h3>Frame Payments</h3><p>AI systems, document workflows, guardrails, human-in-loop.</p></article><article class=\"story-card\"><h3>JPMorgan</h3><p>Reliability, regulated systems, observability, enterprise users.</p></article><article class=\"story-card\"><h3>Startup mode</h3><p>Ambiguity, autonomy, product engineering, execution.</p></article></div>",
+				"<div class=\"r-stack callout-stack\"><p class=\"fragment fade-in-then-out\">Ownership or AI systems: start with Frame Payments.</p><p class=\"fragment fade-in-then-out\">Scale or enterprise trust: use JPMorgan.</p><p class=\"fragment fade-in-then-out\">Ambiguity or speed: use startup mode.</p></div>"
+			],
+			"notes": [
+				"Never invent metrics. Say materially reduced repeated follow-up loops unless a specific number is verified.",
+				"Use the r-stack pacing only if the conversation needs rehearsal, not in a fast interview."
+			]
+		},
+		{
+			"id": "frame-story",
+			"menuTitle": "Frame story",
+			"html": [
+				"<h2>Frame Payments: agentic compliance workflow</h2>",
+				"<div class=\"two-col\"><div><h3>Claim</h3><p>I can build AI systems where correctness, traceability, and workflow fit matter more than flashy generation.</p><h3>Shape</h3><ol><li>Business pain and document back-and-forth.</li><li>Structured extraction and explicit failure states.</li><li>Human escalation for ambiguous or high-risk cases.</li><li>Inspectable outputs, source support, validation failures.</li></ol></div><div class=\"r-frame frame-panel\"><h3>Legora map</h3><p>Document complexity, high-trust output, auditability, expert review, workflow compression.</p><p class=\"mini-claim\">The model did not solve the problem alone; the system design did.</p></div></div>"
+			],
+			"notes": [
+				"Default first story. Answer shape: problem, constraints, architecture, validation, impact.",
+				"Stress that the safety boundary is product and platform design, not a prompt."
+			]
+		},
+		{
+			"id": "jpmorgan-story",
+			"menuTitle": "JPMorgan story",
+			"html": [
+				"<h2>JPMorgan: regulated enterprise data infrastructure</h2>",
+				"<ul class=\"tight feature-list\"><li>Built and maintained data infrastructure with clear downstream interfaces.</li><li>Improved signal quality instead of only adding alerts or dashboards.</li><li>Handled latency, failure isolation, maintainability, and observability tradeoffs.</li><li>Communicated complexity across stakeholder groups without hiding the risk.</li></ul>",
+				"<p class=\"answer-line\">Use for: reliability, scale, expert users, regulated enterprise credibility.</p>"
+			],
+			"notes": [
+				"Replace with exact verified metric if available.",
+				"Otherwise frame the result as reduced operational noise and improved adoption across internal users."
+			]
+		},
+		{
+			"id": "hard-questions",
+			"menuTitle": "Hard questions",
+			"html": [
+				"<h2>Hard questions: answer as a system</h2>",
+				"<div class=\"qa-grid\"><div><h3>How do you reduce hallucinations?</h3><p>Treat model output as untrusted until validated. Ground retrieval on authorized sources, constrain outputs with schemas, verify citations and business rules, expose uncertainty, and route sensitive actions through human approval.</p></div><div><h3>How do you prevent permission leakage?</h3><p>Authorize before retrieval. Normalize identity, tenant, matter, role, and document ACLs into query-time filters across keyword and vector retrieval.</p></div><div><h3>How do you debug an unsupported claim?</h3><p>Trace the request, retrieved sources, permission filters, prompts, tool calls, citations, validators, and final user edits. Turn the failure into an eval.</p></div></div>"
+			],
+			"notes": [
+				"The stronger phrase: I want a reproducible trace and regression test, not a one-off explanation.",
+				"If pressed on model choice, pivot to eval-driven routing rather than favorite-model opinions."
+			]
+		},
+		{
+			"id": "design-prompt",
+			"menuTitle": "Design prompt",
+			"sourceIds": ["legora_aos", "legora_everlaw"],
+			"html": [
+				"<h2>System design prompt</h2>",
+				"<p class=\"lede\">A lawyer receives a contract redline or client request. Design a system that reviews changes against matter context, firm playbooks, precedent, and authoritative sources; proposes a response; and routes it for lawyer approval before delivery.</p>",
+				"<div class=\"phase-list\"><span>permissions</span><span>context</span><span>planner</span><span>tools</span><span>validation</span><span>approval</span><span>delivery</span><span>evals</span></div>",
+				"<p class=\"caption\">Start with the risk boundary and workflow. Do not make the agent an opaque transaction.</p>"
+			],
+			"notes": [
+				"Use this if Greg asks architecture. Start with tenants, matters, document versions, and human approval.",
+				"Make the workflow inspectable before adding model sophistication."
+			]
+		},
+		{
+			"id": "workflow-build-1",
+			"menuTitle": "Workflow build 1",
+			"attributes": { "data-auto-animate": "" },
+			"html": [
+				"<h2>Legal-agent workflow build-up</h2>",
+				"<div class=\"workflow workflow-three\"><div class=\"node\" data-id=\"intake\">Intake<br><small>Outlook / portal / DMS</small></div><div class=\"node\" data-id=\"normalize\">Normalize<br><small>parse / OCR / version</small></div><div class=\"node strong\" data-id=\"authorize\">Authorize<br><small>tenant / matter / ACL</small></div></div>"
+			],
+			"notes": [
+				"Legal workflow starts from the matter request and document bundle, not a blank prompt.",
+				"Authorization is a precondition to retrieval and generation."
+			]
+		},
+		{
+			"id": "workflow-build-2",
+			"menuTitle": "Workflow build 2",
+			"attributes": { "data-auto-animate": "" },
+			"html": [
+				"<h2>Legal-agent workflow build-up</h2>",
+				"<div class=\"workflow workflow-six\"><div class=\"node\" data-id=\"intake\">Intake<br><small>Outlook / portal / DMS</small></div><div class=\"node\" data-id=\"normalize\">Normalize<br><small>parse / OCR / version</small></div><div class=\"node strong\" data-id=\"authorize\">Authorize<br><small>tenant / matter / ACL</small></div><div class=\"node\" data-id=\"context\">Context<br><small>precedent / playbooks</small></div><div class=\"node\" data-id=\"planner\">Planner<br><small>explicit task graph</small></div><div class=\"node\" data-id=\"tools\">Typed tools<br><small>research / compare / draft</small></div></div>"
+			],
+			"notes": [
+				"Keep the planner inspectable.",
+				"Tools should be narrow, typed, observable, and testable."
+			]
+		},
+		{
+			"id": "workflow-build-3",
+			"menuTitle": "Workflow build 3",
+			"attributes": { "data-auto-animate": "" },
+			"html": [
+				"<h2>Legal-agent workflow build-up</h2>",
+				"<div class=\"workflow workflow-ten\"><div class=\"node\" data-id=\"intake\">Intake<br><small>Outlook / portal / DMS</small></div><div class=\"node\" data-id=\"normalize\">Normalize<br><small>parse / OCR / version</small></div><div class=\"node strong\" data-id=\"authorize\">Authorize<br><small>tenant / matter / ACL</small></div><div class=\"node\" data-id=\"context\">Context<br><small>precedent / playbooks</small></div><div class=\"node\" data-id=\"planner\">Planner<br><small>explicit task graph</small></div><div class=\"node\" data-id=\"tools\">Typed tools<br><small>research / compare / draft</small></div><div class=\"node strong\" data-id=\"validate\">Validate<br><small>citations / rules</small></div><div class=\"node strong\" data-id=\"approval\">Lawyer approval<br><small>review / edit / accept</small></div><div class=\"node\" data-id=\"delivery\">Delivery<br><small>Word / Outlook / DMS</small></div><div class=\"node\" data-id=\"evals\">Trace + evals<br><small>audit / regressions</small></div></div>"
+			],
+			"notes": [
+				"Treat model output as untrusted until citations, schemas, business rules, and confidence thresholds pass.",
+				"Human approval is the safety boundary for legally sensitive output."
+			]
+		},
+		{
+			"id": "architecture-diagram",
+			"menuTitle": "Architecture diagram",
+			"html": [
+				"<h2>Architecture diagram</h2>",
+				"<img class=\"r-stretch r-frame diagram-image\" src=\"./legal-review-architecture.svg\" alt=\"Permission-aware legal review architecture\" data-preview-image=\"./legal-review-architecture.svg\" data-preview-fit=\"contain\">",
+				"<p class=\"caption diagram-caption\">Zoom or open the lightbox when rehearsing the left-to-right walkthrough.</p>"
+			],
+			"notes": [
+				"Walk left to right, then bottom row back to trace and evals.",
+				"Mention async jobs, idempotency, retries, and compensating actions if asked about partial failure."
+			]
+		},
+		{
+			"id": "permission-trace-contract",
+			"menuTitle": "Permission and trace contract",
+			"sourceIds": ["legora_security", "openai_agent_tracing"],
+			"html": [
+				"<h2>Permission and trace contract</h2>",
+				"<div class=\"contract-grid\"><div><h3>Runtime contract</h3><ul class=\"tight\"><li>No retrieval without tenant, matter, role, and document ACL.</li><li>No client-facing output without citation validation and lawyer approval.</li><li>No silent tool action without idempotency key and audit event.</li></ul></div><pre><code class=\"language-json\" data-trim>{\n  \"run_id\": \"matter-review-042\",\n  \"allowed_sources\": [\"matter_docs\", \"playbook\", \"authorized_research\"],\n  \"blocked\": [\"cross_matter_vector_hit\"],\n  \"human_gate\": \"required_before_send\"\n}</code></pre></div>"
+			],
+			"notes": [
+				"This is the slide to show engineering taste.",
+				"The system should make invalid states hard to represent, not just hope the model follows instructions."
+			]
+		},
+		{
+			"id": "failure-modes",
+			"menuTitle": "Failure modes",
+			"sourceIds": ["openai_agent_guardrails"],
+			"html": [
+				"<h2>Failure modes and gates</h2>",
+				"<div class=\"two-col\"><div><h3>Failure modes</h3><ul class=\"tight\"><li>Retrieval leakage across matters or tenants.</li><li>Citations that do not support the generated claim.</li><li>Silent truncation or missed document versions.</li><li>Integration failure after partial workflow completion.</li><li>Overconfident output when sources conflict.</li></ul></div><div><h3>Eval gates</h3><ul class=\"tight\"><li>Permission leakage: deterministic ACL fixtures, 100% pass.</li><li>Citation support: source-span verifier plus expert sample.</li><li>Review burden: lawyer rating and edit distance trend down.</li><li>Completion quality: outcome state meets workflow SLA.</li><li>Tool safety: guardrails around every mutating function call.</li></ul></div></div>"
+			],
+			"notes": [
+				"Every system answer needs a failure mode.",
+				"Prefer eval language over vibes."
+			]
+		},
+		{
+			"id": "eval-ladder",
+			"menuTitle": "Evals ladder",
+			"sourceIds": ["openai_eval_best_practices", "anthropic_effective_agents"],
+			"html": [
+				"<h2>Evals ladder for a legal workflow</h2>",
+				"<div class=\"eval-grid\"><article><strong>Unit</strong><span>schemas, parsers, ACL filters, citation parser</span></article><article><strong>Golden matters</strong><span>expert-labeled requests with expected sources and outcomes</span></article><article><strong>Adversarial</strong><span>cross-matter leakage, prompt injection, conflicting authority</span></article><article><strong>Online</strong><span>review burden, edit distance, escalation rate, completion SLA</span></article></div>",
+				"<p class=\"answer-line\">Failure becomes data: trace the miss, label it, add it to the eval suite, and prevent recurrence.</p>"
+			],
+			"notes": [
+				"Show a ladder from deterministic tests to expert evaluation to production telemetry.",
+				"If asked about velocity, say the eval harness is what lets the team move faster without hiding risk."
+			]
+		},
+		{
+			"id": "first-90-days",
+			"menuTitle": "First 90 days",
+			"sourceIds": ["legora_aos", "legora_security"],
+			"html": [
+				"<h2>First 90 days</h2>",
+				"<div class=\"ninety-grid\"><article><h3>0-30</h3><p>Map product surface, agent runtime, integration boundaries, on-call posture, and the eval stack. Ship one small reliability improvement.</p></article><article><h3>31-60</h3><p>Own a vertical slice: permissioned retrieval or validation path through delivery, with traces and regression coverage.</p></article><article><h3>61-90</h3><p>Broaden leverage: remove a platform bottleneck, codify a reusable workflow pattern, and document the operating standard.</p></article></div>",
+				"<p class=\"caption\">This is a senior-engineer answer: learn fast, ship safely, then scale the pattern.</p>"
+			],
+			"notes": [
+				"Use this near the end if the interviewer asks about ramp or ownership.",
+				"Make it concrete and humble: learn the system, then increase leverage."
+			]
+		},
+		{
+			"id": "smart-questions",
+			"menuTitle": "Smart questions",
+			"html": [
+				"<h2>Smart questions to ask</h2>",
+				"<ol class=\"question-list\"><li>For the NYC engineering hub, what platform or product bottlenecks should senior engineers remove first?</li><li>How is ownership split across agent runtime, integrations, retrieval, product surfaces, and infrastructure?</li><li>What is a high-quality agentic workflow: accuracy, latency, adoption, review burden, completion rate?</li><li>Where are the hardest reliability problems now: permissions, long-running workflows, model variability, integrations, document scale, or evals?</li></ol>"
+			],
+			"notes": [
+				"Pick two based on what Greg emphasizes.",
+				"End with what a great first 90 days would look like."
+			]
+		},
+		{
+			"id": "close",
+			"menuTitle": "Close",
+			"sourceIds": ["legora_aos", "legora_graceview", "legora_everlaw", "legora_qura"],
+			"html": [
+				"<h2 class=\"r-fit-text\">Close with the thesis</h2>",
+				"<p class=\"closing-line\">I am strongest where systems reliability and AI workflow depth have to meet.</p>",
+				"<p>Legora's current direction is exactly that: legal-domain agents, permissioned context, integrations, validation, and expert approval inside the flow of work.</p>"
+			],
+			"notes": [
+				"Make the close crisp.",
+				"Tie your strongest evidence back to aOS, Qura, Graceview, Everlaw, and the security model."
+			]
+		}
+	]
+}

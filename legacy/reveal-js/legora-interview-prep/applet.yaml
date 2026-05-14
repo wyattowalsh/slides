@@ -1,0 +1,9 @@
+name: legora-interview-prep
+title: Legora Interview Prep Deck
+description: Reveal.js deck for a Senior Software Engineer hiring manager interview.
+entry: index.html
+version: 2026-05-08
+tags:
+  - reveal.js
+  - interview-prep
+  - legal-ai
