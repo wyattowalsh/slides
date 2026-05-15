@@ -1,5 +1,7 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 
+import { deckUrl } from "@/lib/deck-url";
+
 export const baseOptions = {
 	nav: {
 		title: "Slides",
@@ -7,7 +9,7 @@ export const baseOptions = {
 	links: [
 		{
 			text: "Deck",
-			url: "http://127.0.0.1:5173",
+			url: deckUrl,
 		},
 	],
 } satisfies BaseLayoutProps;

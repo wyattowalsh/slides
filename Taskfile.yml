@@ -1,0 +1,102 @@
+version: "3"
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - task --list
+
+  install:
+    desc: Install workspace dependencies
+    cmds:
+      - pnpm install
+
+  dev:
+    desc: Run the slide deck dev server
+    cmds:
+      - pnpm dev
+
+  docs:
+    desc: Run the docs dev server
+    cmds:
+      - pnpm docs:dev
+
+  build:
+    desc: Build the slide deck
+    cmds:
+      - pnpm build
+
+  docs:build:
+    desc: Build the docs site
+    cmds:
+      - pnpm docs:build
+
+  typecheck:
+    desc: Type-check root app, UI package, and docs
+    cmds:
+      - pnpm typecheck
+
+  lint:
+    desc: Run ESLint
+    cmds:
+      - pnpm lint
+
+  test:ui:
+    desc: Run UI unit tests
+    cmds:
+      - pnpm test:ui
+
+  test:e2e:
+    desc: Run Playwright dev-server smoke tests
+    cmds:
+      - pnpm test:e2e
+
+  test:e2e:preview:
+    desc: Run Playwright production-preview smoke tests
+    cmds:
+      - pnpm test:e2e:preview
+
+  validate:plugin-presets:
+    desc: Compile opt-in plugin preset imports and CSS
+    cmds:
+      - pnpm validate:plugin-presets
+
+  validate:bundle:
+    desc: Check opt-in preset markers are absent from the default bundle
+    cmds:
+      - pnpm validate:bundle
+
+  validate:slides:
+    desc: Build and validate rendered Reveal output
+    cmds:
+      - pnpm validate:slides
+
+  export:pdf:
+    desc: Export slides.pdf from a running preview server
+    cmds:
+      - pnpm export:pdf
+
+  validate:
+    desc: Run the full pre-ship validation suite
+    cmds:
+      - pnpm validate
+
+  audit:
+    desc: Audit dependencies at moderate severity or higher
+    cmds:
+      - pnpm audit --audit-level moderate
+
+  precommit:
+    desc: Run the focused local pre-commit gate
+    cmds:
+      - pnpm precommit
+
+  hooks:install:
+    desc: Install opt-in repository git hooks
+    cmds:
+      - pnpm hooks:install
+
+  ci:
+    desc: Run CI validation and dependency audit
+    cmds:
+      - pnpm run ci

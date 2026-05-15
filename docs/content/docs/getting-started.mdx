@@ -20,7 +20,7 @@ pnpm install
 pnpm dev
 ```
 
-Open `http://127.0.0.1:5173`.
+Open `http://127.0.0.1:5173`. Hosted docs can point the Deck link at another URL with `NEXT_PUBLIC_SLIDES_DECK_URL`.
 
 ## Run The Docs
 
@@ -31,6 +31,18 @@ pnpm docs:dev
 Open `http://127.0.0.1:3000`.
 
 ## Validate Before Shipping
+
+Optional local hook setup for this clone:
+
+```bash
+pnpm hooks:install
+```
+
+The hook runs the focused local gate:
+
+```bash
+pnpm precommit
+```
 
 For small content-only edits, run focused checks:
 
@@ -47,3 +59,11 @@ pnpm validate
 ```
 
 `pnpm validate` includes dev-server and production-preview E2E smoke tests. Use manual inspection or export-specific checks when final PDF/PPTX fidelity matters.
+
+For CI parity, run:
+
+```bash
+pnpm run ci
+```
+
+That adds the moderate dependency audit to the full validation suite. If you have Task installed, `task --list` shows aliases for the same pnpm scripts.

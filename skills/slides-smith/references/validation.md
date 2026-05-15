@@ -13,13 +13,14 @@
 | Change                          | Commands                                                    |
 | ------------------------------- | ----------------------------------------------------------- |
 | TypeScript/React slide edits    | `pnpm typecheck`, `pnpm lint`                               |
+| Focused local pre-commit gate   | `pnpm precommit`                                            |
 | Shared UI primitive changes     | `pnpm test:ui`                                              |
 | Slide structure/build output    | `pnpm build`, `pnpm validate:slides`                        |
 | Docs changes                    | `pnpm docs:build`                                           |
 | Plugin preset changes           | `pnpm validate:plugin-presets`, then `pnpm validate:slides` |
 | Bundle-guard-only check         | `pnpm build`, then `pnpm validate:bundle`                   |
 | Navigation/layout/accessibility | `pnpm test:e2e`, `pnpm test:e2e:preview`                    |
-| Release readiness               | `pnpm validate` plus any export-specific inspection         |
+| CI parity / release readiness   | `pnpm run ci` plus any export-specific inspection           |
 
 ## Focused Validation
 
@@ -37,8 +38,10 @@ pnpm validate:slides
 Use before declaring broad workflow work complete:
 
 ```bash
-pnpm validate && pnpm audit --audit-level moderate
+pnpm run ci
 ```
+
+`pnpm run ci` runs `pnpm validate` and then `pnpm audit --audit-level moderate`, matching the GitHub Actions gate.
 
 `pnpm test:e2e` is a dev-server smoke test because Playwright starts `pnpm dev`. `pnpm test:e2e:preview` builds and exercises `pnpm preview` against production output. Neither command proves exported PDF/PPTX files open correctly.
 
@@ -51,7 +54,7 @@ Current Playwright coverage checks:
 3. Vertical stacks work when present.
 4. Fragments reveal in intended order.
 5. Mobile route smoke passes.
-6. Axe reports no critical or serious issues on representative `.reveal` states.
+6. Axe reports no critical or serious issues on the present slide for representative deck routes.
 7. App-owned requests do not fail.
 
 Residual risks: fragment-revealed content is not exhaustively axe-scanned. For export or release-critical changes, inspect the exported PDF/PPTX manually when tooling is available.

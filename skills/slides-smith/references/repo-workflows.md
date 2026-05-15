@@ -84,4 +84,5 @@ Update docs when changing:
 | Opt-in presets  | preset module, preset entry test, bundle guard, metadata, README, docs |
 | Commands        | `package.json`, README, docs                                           |
 | Export workflow | README, docs export page, skill reference if applicable                |
+| CI/local hooks  | `.github/workflows/`, `.githooks/`, `Taskfile.yml`, README, docs       |
 | Repo topology   | `AGENTS.md`, README, docs                                              |

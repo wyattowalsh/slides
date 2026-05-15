@@ -1,0 +1,45 @@
+---
+title: Development Workflow
+description: Local task aliases, pre-commit checks, and CI validation.
+---
+
+## Quality Gates
+
+| Change type                                      | Local check                         | Full check      |
+| ------------------------------------------------ | ----------------------------------- | --------------- |
+| UI primitive or TypeScript-only change           | `pnpm precommit`                    | `pnpm validate` |
+| Slide structure, Reveal config, or plugin change | `pnpm validate:slides`              | `pnpm validate` |
+| Docs content or docs app change                  | `pnpm docs:build`                   | `pnpm validate` |
+| Dependency update                                | `pnpm audit --audit-level moderate` | `pnpm run ci`   |
+
+`pnpm run ci` is the same gate used by GitHub Actions: full validation plus the moderate dependency audit.
+
+## Taskfile
+
+If you have [Task](https://taskfile.dev/) installed, use `task --list` to see command aliases. The Taskfile is a convenience layer over pnpm scripts; it does not replace the package scripts.
+
+```bash
+task precommit
+task validate
+task ci
+```
+
+## Pre-Commit Hook
+
+Git hooks are opt-in so clones do not mutate local Git configuration during install. Enable the repository hooks once per clone:
+
+```bash
+pnpm hooks:install
+```
+
+The hook runs `pnpm precommit`, which type-checks the workspace, lints, runs UI unit tests, and compiles opt-in plugin preset imports.
+
+## CI
+
+GitHub Actions runs on pushes to `main` and pull requests. The workflow uses read-only repository permissions, SHA-pins third-party actions, installs the locked pnpm version from `packageManager`, caches the pnpm store from `pnpm-lock.yaml`, installs Chromium for Playwright, and runs:
+
+```bash
+pnpm run ci
+```
+
+Keep local commands and CI aligned by changing `package.json` scripts first, then updating Taskfile/docs only when command behavior changes.

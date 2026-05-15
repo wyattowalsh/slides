@@ -25,6 +25,14 @@ pnpm validate
 
 Use this before broad deck, plugin, docs, package, or workflow changes ship. It runs type checking, linting, shared UI unit tests, plugin preset validation, rendered slide validation, docs build, dev-server E2E, and production-preview E2E.
 
+For local parity with GitHub Actions, run:
+
+```bash
+pnpm run ci
+```
+
+This runs `pnpm validate` and then `pnpm audit --audit-level moderate`.
+
 ## End-To-End Smoke Tests
 
 ```bash

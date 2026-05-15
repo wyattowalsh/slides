@@ -11,8 +11,13 @@ const failingResource = (url: string) => {
 	return origin === appOrigin && pathname !== "/favicon.ico";
 };
 
+const currentSlideSelector =
+	".reveal .slides section.present:not(.stack), .reveal .slides section.stack.present section.present";
+
 const assertNoSeriousOrCriticalA11yViolations = async (page: Page) => {
-	const results = await new AxeBuilder({ page }).include(".reveal").analyze();
+	const results = await new AxeBuilder({ page })
+		.include(currentSlideSelector)
+		.analyze();
 	const seriousOrCritical = results.violations.filter(
 		(violation) =>
 			violation.impact === "critical" || violation.impact === "serious",

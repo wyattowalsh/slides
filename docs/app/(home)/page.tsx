@@ -7,6 +7,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@workspace/ui";
+import { deckUrl } from "@/lib/deck-url";
 
 const links = [
 	{
@@ -47,28 +48,33 @@ export default function HomePage() {
 						</Link>
 					</Button>
 					<Button asChild size="lg" variant="outline">
-						<Link className="w-full sm:w-auto" href="http://127.0.0.1:5173">
+						<Link className="w-full sm:w-auto" href={deckUrl}>
 							Open local deck
 						</Link>
 					</Button>
 				</div>
 			</section>
-			<section className="mt-16 grid gap-6 md:grid-cols-3">
-				{links.map((link) => (
-					<Card key={link.href}>
-						<CardHeader>
-							<CardTitle>{link.title}</CardTitle>
-						</CardHeader>
-						<CardContent>
-							<p className="mb-4 text-sm text-fd-muted-foreground">
-								{link.copy}
-							</p>
-							<Link className="font-medium text-fd-primary" href={link.href}>
-								Open {link.title}
-							</Link>
-						</CardContent>
-					</Card>
-				))}
+			<section aria-labelledby="docs-shortcuts-heading" className="mt-16">
+				<h2 className="sr-only" id="docs-shortcuts-heading">
+					Documentation shortcuts
+				</h2>
+				<div className="grid gap-6 md:grid-cols-3">
+					{links.map((link) => (
+						<Card key={link.href}>
+							<CardHeader>
+								<CardTitle>{link.title}</CardTitle>
+							</CardHeader>
+							<CardContent>
+								<p className="mb-4 text-sm text-fd-muted-foreground">
+									{link.copy}
+								</p>
+								<Link className="font-medium text-fd-primary" href={link.href}>
+									Open {link.title}
+								</Link>
+							</CardContent>
+						</Card>
+					))}
+				</div>
 			</section>
 		</main>
 	);

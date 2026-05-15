@@ -13,7 +13,12 @@ export default defineConfig({
 	test: {
 		environment: "jsdom",
 		globals: true,
-		include: ["packages/ui/src/**/*.test.tsx", "src/**/*.test.ts"],
+		include: [
+			"packages/ui/src/**/*.test.ts",
+			"packages/ui/src/**/*.test.tsx",
+			"src/**/*.test.ts",
+			"src/**/*.test.tsx",
+		],
 		testTimeout: 10_000,
 	},
 });

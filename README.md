@@ -10,6 +10,9 @@ Reveal.js slide authoring workspace with React, Tailwind CSS v4, shadcn/ui-style
 | `packages/ui/` | Shared Tailwind v4 + shadcn-compatible primitives  |
 | `docs/`        | Next.js + Fumadocs development documentation       |
 | `tests/e2e/`   | Playwright and axe smoke tests for the deck        |
+| `.github/`     | GitHub Actions validation workflow                 |
+| `.githooks/`   | Opt-in local Git hooks                             |
+| `Taskfile.yml` | Optional Task aliases over the pnpm scripts        |
 | `legacy/`      | Archived deck/source material, not active app code |
 | `skills/`      | Project-local AI agent skills for this workspace   |
 
@@ -37,6 +40,9 @@ pnpm install
 | `pnpm preview`                 | Preview the built deck                             |
 | `pnpm docs:dev`                | Run the Fumadocs docs site                         |
 | `pnpm docs:build`              | Build the docs site                                |
+| `pnpm run ci`                  | Run full validation plus dependency audit          |
+| `pnpm hooks:install`           | Opt in to repository Git hooks for this clone      |
+| `pnpm precommit`               | Run the focused local pre-commit gate              |
 | `pnpm typecheck`               | Type-check root, UI package, and docs              |
 | `pnpm lint`                    | Run ESLint                                         |
 | `pnpm test:ui`                 | Run shared UI primitive unit tests                 |
@@ -47,6 +53,16 @@ pnpm install
 | `pnpm test:e2e`                | Run Playwright smoke tests                         |
 | `pnpm test:e2e:preview`        | Run Playwright smoke tests against preview output  |
 | `pnpm export:pdf`              | Export `slides.pdf` from a running preview server  |
+
+If you have [Task](https://taskfile.dev/) installed, `task --list` shows convenience aliases for these same pnpm scripts. The Taskfile is not a separate source of truth.
+
+Repository Git hooks are opt-in per clone:
+
+```bash
+pnpm hooks:install
+```
+
+The pre-commit hook runs `pnpm precommit`, which type-checks, lints, runs UI unit tests, and validates optional plugin preset imports.
 
 ## Authoring Slides
 
@@ -97,7 +113,7 @@ pnpm docs:dev
 
 ## Export And Validation
 
-Use `pnpm validate:slides` before committing slide changes. Use `pnpm validate` before broad deck, plugin, docs, package, or workflow changes. For PDF export, build and start the preview server in one terminal:
+Use `pnpm validate:slides` before committing slide changes. Use `pnpm validate` before broad deck, plugin, docs, package, or workflow changes. Use `pnpm run ci` for release-style local parity with GitHub Actions because it adds the moderate dependency audit. For PDF export, build and start the preview server in one terminal:
 
 ```bash
 pnpm build

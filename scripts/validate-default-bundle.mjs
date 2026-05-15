@@ -55,12 +55,20 @@ const collectMarkerMatches = (fileNames, markerEntries) => {
 collectMarkerMatches(javascriptFiles, blockedJavaScriptMarkers);
 collectMarkerMatches(cssFiles, blockedCssMarkers);
 
+if (cssFiles.length === 0 && blockedCssMarkers.length > 0) {
+	console.warn(
+		"No CSS assets found in dist/assets; skipped opt-in plugin CSS marker validation.",
+	);
+}
+
 if (matches.length > 0) {
 	throw new Error(
 		`Default bundle includes opt-in plugin markers:\n${matches.join("\n")}`,
 	);
 }
 
-console.log(
-	"Default bundle excludes opt-in plugin markers from JS and CSS assets.",
-);
+console.log("Default bundle excludes opt-in plugin markers from JS assets.");
+
+if (cssFiles.length > 0) {
+	console.log("Default bundle excludes opt-in plugin markers from CSS assets.");
+}

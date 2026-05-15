@@ -8,6 +8,30 @@
 			"types": "./src/index.ts",
 			"default": "./src/index.ts"
 		},
+		"./components": {
+			"types": "./src/components/index.ts",
+			"default": "./src/components/index.ts"
+		},
+		"./components/*": {
+			"types": "./src/components/*.tsx",
+			"default": "./src/components/*.tsx"
+		},
+		"./hooks": {
+			"types": "./src/hooks/index.ts",
+			"default": "./src/hooks/index.ts"
+		},
+		"./hooks/*": {
+			"types": "./src/hooks/*.ts",
+			"default": "./src/hooks/*.ts"
+		},
+		"./lib": {
+			"types": "./src/lib/index.ts",
+			"default": "./src/lib/index.ts"
+		},
+		"./lib/*": {
+			"types": "./src/lib/*.ts",
+			"default": "./src/lib/*.ts"
+		},
 		"./lib/utils": {
 			"types": "./src/lib/utils.ts",
 			"default": "./src/lib/utils.ts"

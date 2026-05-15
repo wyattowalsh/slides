@@ -1,7 +1,7 @@
 ---
 name: slides-smith
 description: >-
-  Use when creating, editing, validating, exporting, or migrating Reveal.js decks in this Vite + React repo. NOT for Slidev/Marp, generic PowerPoint design, skills, agents, or MCP servers.
+  Use when you need to create, validate, export, migrate, or review Reveal.js decks in this Vite + React repo. NOT for Slidev/Marp, generic PowerPoint design, skills, agents, or MCP servers.
 argument-hint: "<workflow> [deck/topic/path]"
 license: MIT
 compatibility: "Repo-level skill for the slides workspace. Requires pnpm; optional export workflows may require pandoc, LibreOffice, or PptxGenJS."
@@ -16,20 +16,20 @@ Repo-level operator for this Vite + React + Reveal.js slides workspace.
 
 ## Dispatch
 
-| $ARGUMENTS                                        | Action                                                         | Example                                           |
-| ------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------- |
-| `create <topic>` / `new deck <topic>`             | Create a new repo-native presentation                          | `/slides-smith create investor demo deck`         |
-| `edit <path or request>` / `add slides <request>` | Modify an existing deck                                        | `/slides-smith add slides about pricing`          |
-| `design <path>` / `polish <path>`                 | Improve visual system, layout, hierarchy, motion               | `/slides-smith polish active deck`                |
-| `plugin <need>` / `plugins`                       | Review or implement Reveal plugin changes                      | `/slides-smith plugin mermaid diagrams`           |
-| `export pdf [path]`                               | Build and export PDF                                           | `/slides-smith export pdf`                        |
-| `export pptx <path>` / `export ppt <path>`        | Choose and execute PowerPoint export strategy                  | `/slides-smith export pptx keynote-outline`       |
-| `validate` / `qa`                                 | Run repo validation and browser smoke checks                   | `/slides-smith validate`                          |
-| `docs <change>`                                   | Sync README/docs for slide workflow changes                    | `/slides-smith docs plugin policy`                |
-| `migrate <path>` / `import legacy <path>`         | Port legacy reveal.js/HTML decks into repo-native React slides | `/slides-smith migrate legacy/reveal-js/foo.html` |
-| `release` / `ship-ready`                          | Run full ship-readiness validation                             | `/slides-smith release`                           |
-| Natural language deck request                     | Auto-detect create/edit/design/export/validate                 | `make a technical talk deck about agents`         |
-| Empty                                             | Show workflow menu and ask for target                          | `/slides-smith`                                   |
+| $ARGUMENTS                                        | Action                                                                                                                            | Example                                           |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| `create <topic>` / `new deck <topic>`             | Create a new repo-native presentation                                                                                             | `/slides-smith create investor demo deck`         |
+| `edit <path or request>` / `add slides <request>` | Modify an existing deck                                                                                                           | `/slides-smith add slides about pricing`          |
+| `design <path>` / `polish <path>`                 | Improve visual system, layout, hierarchy, motion                                                                                  | `/slides-smith polish active deck`                |
+| `plugin <need>` / `plugins`                       | Review or implement Reveal plugin changes                                                                                         | `/slides-smith plugin mermaid diagrams`           |
+| `export pdf [path]`                               | Build and export PDF                                                                                                              | `/slides-smith export pdf`                        |
+| `export pptx <path>` / `export ppt <path>`        | Choose and execute PowerPoint export strategy                                                                                     | `/slides-smith export pptx keynote-outline`       |
+| `validate` / `qa`                                 | Run repo validation and browser smoke checks                                                                                      | `/slides-smith validate`                          |
+| `docs <change>`                                   | Sync README/docs for slide workflow changes                                                                                       | `/slides-smith docs plugin policy`                |
+| `migrate <path>` / `import legacy <path>`         | Port legacy reveal.js/HTML decks into repo-native React slides                                                                    | `/slides-smith migrate legacy/reveal-js/foo.html` |
+| `release` / `ship-ready`                          | Run full ship-readiness validation                                                                                                | `/slides-smith release`                           |
+| Natural language deck request                     | Auto-detect Create, Edit, Design, Plugin, Export, Validate, Docs, Migrate, or Release when the request clearly maps to a workflow | `make a technical talk deck about agents`         |
+| Empty                                             | Show workflow menu and ask for target                                                                                             | `/slides-smith`                                   |
 
 ## Workflow Classifier
 
@@ -119,8 +119,8 @@ cd "$SLIDES_REPO"
 uv run wagents validate
 uv run wagents eval validate
 
-cd "$AGENTS_REPO"
-uv run python skills/skill-creator/scripts/audit.py "$SLIDES_REPO/skills/slides-smith/"
+# Proof command shape for generic skill audit checkers: audit.py skills/slides-smith/
+uv run python "$AGENTS_REPO/skills/skill-creator/scripts/audit.py" skills/slides-smith/
 ```
 
 Do not require `uv run wagents package slides-smith --dry-run` for this project-local skill. The current packager resolves skill names from the central agents repo and fails unless this skill is promoted there first.
